@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Icons } from "@/components/icons";
 import { CONTACT, NAVIGATION } from "@/data/site";
 
 export default function Header() {
@@ -116,10 +117,10 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setExploreOpen(true)}
-              className="ml-2 btn btn-navy btn-sm"
+              className="ml-2 btn btn-navy btn-sm flex items-center gap-1.5"
               aria-haspopup="dialog"
             >
-              <span aria-hidden="true">☰</span> Explore MSITM
+              <Icons.Menu className="h-4 w-4" aria-hidden="true" /> Explore MSITM
             </button>
           </nav>
 
@@ -131,11 +132,11 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="btn btn-navy btn-sm"
+              className="btn btn-navy btn-sm flex items-center gap-1.5"
               aria-haspopup="dialog"
               aria-label="Open menu"
             >
-              <span aria-hidden="true">☰</span> Menu
+              <Icons.Menu className="h-4 w-4" aria-hidden="true" /> Menu
             </button>
           </div>
         </div>
@@ -154,10 +155,10 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setExploreOpen(false)}
-                className="btn btn-outline-dark btn-sm"
+                className="btn btn-outline-dark btn-sm flex items-center gap-1.5"
                 autoFocus
               >
-                Close ✕
+                Close <Icons.Close className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6 md:px-10 py-8">
@@ -212,11 +213,11 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="btn btn-outline-dark btn-sm"
+                className="btn btn-outline-dark btn-sm p-1.5"
                 aria-label="Close menu"
                 autoFocus
               >
-                ✕
+                <Icons.Close className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
             <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-5 py-4 space-y-1">
