@@ -1,0 +1,330 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", "Georgia", "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-navy-950: #060f24;
+  --color-navy-900: #0a1d3d;
+  --color-navy-800: #10294f;
+  --color-navy-700: #1a3a68;
+  --color-navy-600: #24497f;
+  --color-navy-100: #dbe4f2;
+  --color-navy-50: #eef2f8;
+
+  --color-gold-700: #7c5c12;
+  --color-gold-600: #9a7418;
+  --color-gold-500: #b98f22;
+  --color-gold-400: #c9a227;
+  --color-gold-300: #d9bc5c;
+  --color-gold-100: #f3ead0;
+  --color-gold-50: #faf6ea;
+
+  --color-parchment: #f6f4ec;
+  --color-ink: #1b2433;
+  --color-muted: #5b6478;
+  --color-line: #e3ddcc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: var(--color-navy-950);
+}
+
+/* ---------- Editorial typography ---------- */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-600);
+}
+
+.eyebrow--light {
+  color: var(--color-gold-300);
+}
+
+.rule-gold {
+  width: 3.5rem;
+  height: 3px;
+  background: var(--color-gold-400);
+}
+
+.lede {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #3c4557;
+}
+
+@media (min-width: 768px) {
+  .lede {
+    font-size: 1.25rem;
+  }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.925rem;
+  letter-spacing: 0.01em;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-gold {
+  background: var(--color-gold-400);
+  color: var(--color-navy-950);
+}
+
+.btn-gold:hover {
+  background: var(--color-gold-500);
+}
+
+.btn-navy {
+  background: var(--color-navy-900);
+  color: #fff;
+}
+
+.btn-navy:hover {
+  background: var(--color-navy-800);
+}
+
+.btn-outline {
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #fff;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #fff;
+}
+
+.btn-outline-dark {
+  border-color: var(--color-navy-900);
+  color: var(--color-navy-900);
+  background: transparent;
+}
+
+.btn-outline-dark:hover {
+  background: var(--color-navy-900);
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 0.55rem 1.1rem;
+  font-size: 0.82rem;
+}
+
+/* ---------- Surfaces ---------- */
+.card-line {
+  border: 1px solid var(--color-line);
+  background: #fff;
+}
+
+.card-line:hover {
+  border-color: var(--color-gold-400);
+}
+
+.band-navy {
+  background: var(--color-navy-900);
+  color: #fff;
+}
+
+.band-parchment {
+  background: var(--color-parchment);
+}
+
+.hairline {
+  border-color: var(--color-line);
+}
+
+/* ---------- Tables ---------- */
+.table-msitm {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+}
+
+.table-msitm thead th {
+  background: var(--color-navy-900);
+  color: #fff;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  letter-spacing: 0.02em;
+}
+
+.table-msitm tbody td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--color-line);
+  vertical-align: top;
+}
+
+.table-msitm tbody tr:nth-child(even) td {
+  background: #faf9f4;
+}
+
+.table-msitm tbody tr:hover td {
+  background: var(--color-gold-50);
+}
+
+/* ---------- Forms ---------- */
+.field-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-navy-900);
+  margin-bottom: 0.4rem;
+}
+
+.field-input,
+.field-select,
+.field-textarea {
+  width: 100%;
+  border: 1px solid #c9c2ad;
+  background: #fff;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+  border-color: var(--color-navy-900);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.25);
+}
+
+.field-error {
+  font-size: 0.8rem;
+  color: #b3261e;
+  margin-top: 0.3rem;
+}
+
+/* ---------- Marquee ---------- */
+@keyframes msitm-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: msitm-marquee 42s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- Misc ---------- */
+.link-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold-400);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.link-underline:hover {
+  color: var(--color-navy-900);
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.9rem;
+  margin-bottom: 0.65rem;
+}
+
+.check-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.28rem;
+  width: 1rem;
+  height: 1rem;
+  background: var(--color-gold-400);
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.dropcap::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.4em;
+  float: left;
+  line-height: 0.85;
+  padding-right: 0.12em;
+  color: var(--color-navy-900);
+  font-weight: 600;
+}
+
+.hero-grid-lines {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.stat Numeral,
+.stat-numeral {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+}
