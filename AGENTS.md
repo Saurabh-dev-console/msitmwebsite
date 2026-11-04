@@ -49,24 +49,33 @@ This project is indexed by GitNexus as **msitm-website-audit-rebuild** (551 symb
 
 All development and AI assistance in this workspace is governed by the permanent engineering rules and skills:
 
-## 1. Central Documentation
+## 1. Central Documentation (10 Core Files)
 Always consult the central documentation index at `docs/engineering/README.md` before making architectural decisions:
+- `docs/engineering/README.md` — Master index & setup status
 - `docs/engineering/ARCHITECTURE.md` — Stack overview & layout hierarchy
-- `docs/engineering/ENGINEERING_RULES.md` — 5 core engineering mandates
+- `docs/engineering/ENGINEERING_RULES.md` — Master engineering mandates, icon standards, component reuse & dependency policy
 - `docs/engineering/UI_LIBRARY_GUIDE.md` — Animaster, Skiper UI, Vengence UI registries
 - `docs/engineering/CODE_GRAPH_GUIDE.md` — Code intelligence & token-efficient querying
 - `docs/engineering/IMPLEMENTATION_WORKFLOW.md` — 6-step task chunking execution flow
-- `docs/engineering/DEPENDENCY_POLICY.md` — Strict dependency veto & audit rules
-- `docs/engineering/ICON_SYSTEM.md` — Zero hardcoded icons; centralized `lucide-react`
-- `docs/engineering/COMPONENT_REUSE.md` — Component reuse protocol (DRY / Single Source)
+- `docs/engineering/SKILL_REGISTRY.md` — Official inventory of all agent skills and statuses
+- `docs/engineering/DECISIONS.md` — Architecture Decision Records (ADRs)
+- `docs/engineering/ONYX_INTEGRATION.md` — Onyx enterprise platform evaluation & deferred guide
 - `docs/engineering/TESTING_AND_VERIFICATION.md` — Typecheck, lint, build, & regression checks
-- `docs/engineering/CHANGELOG.md` — Record of structural & engineering changes
 
-## 2. Core Agent Skills
-- **Ponytail (`.agents/skills/ponytail/SKILL.md`)**: The smallest complete solution. No unnecessary code, wrappers, or speculative complexity.
-- **Task Chunking (`.agents/skills/task-chunking/SKILL.md`)**: Large tasks must be decomposed into verifiable sequential chunks.
-- **Reverse Engineering (`.agents/skills/reverse-engineering/SKILL.md`)**: Observational, clean-room reconstruction protocol. Never bypass security or exfiltrate private data.
-- **Code Graph (`.agents/skills/code-graph/SKILL.md`)**: Graph traversal and impact analysis before file modifications.
+## 2. Token-Efficient Skill Routing (v2)
+
+Load only the specific skill matching task intent. Never activate all skills at once:
+
+| Task Intent | Skills to Load |
+| :--- | :--- |
+| **Reverse engineer authorized runtime/app behavior** | `reverse-engineering` / `reverse-engineer-anything` |
+| **Refactor, simplify, or implement code** | `ponytail` + relevant graph context |
+| **Create or redesign a UI surface** | `ui-ux-pro-max` and/or `hallmark`; `impeccable` for audit |
+| **Polish natural-language copy** | `humanizer` |
+| **Recent technology / community research** | `last30days` |
+| **Authorized website data extraction** | `scrapling-official` |
+| **Architecture / sequence / technical diagrams** | `diagram-design` |
+| **Search project knowledge base** | Onyx MCP (only if deployed & connected) |
 
 ## 3. Standard Agent Workflow
 1. **Before Coding**: Read `docs/engineering/README.md`, identify symbols in the code graph, calculate upstream impact, and plan chunks.

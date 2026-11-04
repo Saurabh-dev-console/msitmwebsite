@@ -26,6 +26,7 @@ This document records the official sources, installation mechanisms, security as
 | **humanizer** | `github.com/hannsxpeter/humanizer` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Natural language copywriting, de-slopping AI text |
 | **diagram-design** | `github.com/cathrynlavery/diagram-design` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Technical architecture, ER, sequence, and system diagrams |
 | **last30days** | `github.com/mvanhorn/last30days-skill` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Recent web, GitHub, and community technical research |
+| **scrapling-official** | `github.com/D4Vinci/Scrapling` | BSD-3-Clause | Agent Skill | **INSTALLED AND VERIFIED** | Web page extraction, HTTP requests, stealth browser scraping |
 
 ---
 
@@ -47,7 +48,6 @@ This document records the official sources, installation mechanisms, security as
 | Target | Upstream Source | Classification | Current Status | Disposition / Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | **Onyx** | `github.com/onyx-dot-app/onyx` | Enterprise RAG Platform | **NOT INSTALLED (DEFERRED)** | Full platform requiring Docker/WSL2 and dedicated host services. Documented in `docs/engineering/ONYX_INTEGRATION.md`. |
-| **Scrapling** | `github.com/D4Vinci/Scrapling` | Python Scraping Toolkit | **NOT INSTALLED (DEFERRED)** | Python-based web scraper. Deferred to prevent adding unneeded Python runtime dependencies to this TypeScript/Next.js repository. |
 | **Animaster** | `animmasterlib.dev` | UI Component Registry | **PENDING USER INPUT** | Copy-paste UI source documented in `docs/engineering/UI_LIBRARY_GUIDE.md`. No monolithic npm package installed. |
 | **Task-Chunking Upstream Repo** | Separate URL from project owner | Upstream Repository | **PENDING USER INPUT** | Runs as a fully verified local workflow in `.agents/skills/task-chunking/SKILL.md` pending owner URL. |
 

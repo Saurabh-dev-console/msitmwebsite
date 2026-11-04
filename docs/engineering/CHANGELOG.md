@@ -51,3 +51,26 @@ All significant architectural, infrastructure, and toolchain configurations for 
   - Published full engineering suite in `docs/engineering/`.
   - Configured permanent agent instructions in `.agents/AGENTS.md` and root `AGENTS.md`.
 
+---
+
+## [2.0.0] — Master Setup v2 Specification Alignment
+
+### Added
+- **Complete Suite of 10 Requested Integrations**:
+  - `scrapling-official` (`github.com/D4Vinci/Scrapling`): Installed and configured in `.agents/skills/scrapling-official`.
+  - `hallmark` (`github.com/Nutlope/hallmark`): Installed and configured in `.agents/skills/hallmark`.
+  - `humanizer` (`github.com/hannsxpeter/humanizer`): Installed and configured in `.agents/skills/humanizer`.
+  - `impeccable` (`github.com/pbakaus/impeccable`): Installed and configured in `.agents/skills/impeccable`.
+  - `ui-ux-pro-max` (`github.com/nextlevelbuilder/ui-ux-pro-max-skill`): Installed and configured in `.agents/skills/ui-ux-pro-max`.
+  - `last30days` (`github.com/mvanhorn/last30days-skill`): Installed and configured in `.agents/skills/last30days`.
+  - `diagram-design` (`github.com/cathrynlavery/diagram-design`): Installed and configured in `.agents/skills/diagram-design`.
+  - `reverse-engineer-anything` (`github.com/morluto/rea`): Installed and configured in `.agents/skills/reverse-engineer-anything`.
+  - `ponytail` (`github.com/DietrichGebert/ponytail`): Installed and configured in `.agents/skills/ponytail`.
+  - `onyx` (`github.com/onyx-dot-app/onyx`): Assessed as enterprise platform; documented and deferred in `docs/engineering/ONYX_INTEGRATION.md`.
+
+### Consolidated
+- **Documentation Suite Reduced to 10 Focused Files**:
+  - Consolidated `ICON_SYSTEM.md`, `COMPONENT_REUSE.md`, and `DEPENDENCY_POLICY.md` directly into sections of `docs/engineering/ENGINEERING_RULES.md`.
+  - Established unified `docs/engineering/SKILL_REGISTRY.md` detailing all active skills, licenses, and verified functions.
+  - Implemented token-efficient skill routing table in `AGENTS.md` and `.agents/AGENTS.md`.
+

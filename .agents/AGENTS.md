@@ -1,48 +1,44 @@
-# Antigravity Engineering Environment & Agent Standards
+# Antigravity Engineering Environment & Agent Standards (v2)
 
 Welcome to the MSITM Website Audit & Rebuild Engineering Environment.
 All AI agents, engineers, and contributors must adhere to this document and the central engineering documentation in `docs/engineering/`.
 
 ---
 
-## 1. Core Engineering Philosophy
+## 1. Central Documentation (10 Core Files)
 
-- **Minimal & Essential Code**: We follow the Ponytail philosophy (`.agents/skills/ponytail/SKILL.md`). The best code is the code never written. Solve problems with the least code, zero unnecessary abstractions, and zero speculative features.
-- **Task Chunking**: Substantial tasks MUST be decomposed into sequential, verifiable chunks (`.agents/skills/task-chunking/SKILL.md`).
-- **Graph-First Intelligence**: Always query the GitNexus code knowledge graph (`.agents/skills/code-graph/SKILL.md`) before opening or editing files.
-- **Centralized Design & Assets**: Strictly zero hardcoded icons (use `lucide-react`), zero duplicate components, and adherence to approved UI libraries (`Skiper UI`, `Vengence UI`, `Animaster`).
-- **Production Reliability**: WCAG 2.2 AA accessibility, full TypeScript safety, strict Drizzle/Postgres schema consistency, and continuous build verification.
+The documentation suite in `docs/engineering/` has been consolidated into 10 definitive files:
+
+```text
+docs/engineering/
+├── README.md                     # Master index & setup status
+├── ARCHITECTURE.md               # System architecture, stack, data flow
+├── ENGINEERING_RULES.md          # Master rules: Icons, Component Reuse, Dependency Policy
+├── UI_LIBRARY_GUIDE.md           # Skiper UI, Vengence UI registries & Animaster
+├── CODE_GRAPH_GUIDE.md           # GitNexus code knowledge graph protocol
+├── IMPLEMENTATION_WORKFLOW.md    # 6-step task chunking execution flow
+├── SKILL_REGISTRY.md             # Inventory of all agent skills and statuses
+├── DECISIONS.md                  # Architecture Decision Records (ADRs)
+├── ONYX_INTEGRATION.md           # Onyx enterprise platform evaluation & deferred guide
+└── TESTING_AND_VERIFICATION.md   # Typecheck, lint, build, & regression checks
+```
 
 ---
 
-## 2. Directory Navigation & Central Documentation
+## 2. Token-Efficient Skill Routing
 
-```text
-docs/
-└── engineering/
-    ├── README.md                     # Master engineering documentation index
-    ├── ARCHITECTURE.md               # System architecture, stack, data flow
-    ├── ENGINEERING_RULES.md          # 5 Non-negotiable software engineering rules
-    ├── UI_LIBRARY_GUIDE.md           # Approved UI libraries & registry integration
-    ├── CODE_GRAPH_GUIDE.md           # GitNexus code knowledge graph protocol
-    ├── IMPLEMENTATION_WORKFLOW.md    # 6-step task chunking & implementation workflow
-    ├── DEPENDENCY_POLICY.md          # Package management, auditing, and vetting
-    ├── ICON_SYSTEM.md                # Centralized Lucide icon standard
-    ├── COMPONENT_REUSE.md            # Discovery-first component reuse guide
-    ├── TESTING_AND_VERIFICATION.md   # Testing, linting, typechecking, build verification
-    └── CHANGELOG.md                  # Infrastructure & architectural decision record
+Never activate all skills simultaneously. Load only the specific skill matching task intent:
 
-.agents/
-├── AGENTS.md                         # Agent instructions
-└── skills/
-    ├── ponytail/SKILL.md             # Minimal-code engineering
-    ├── task-chunking/SKILL.md        # Verifiable step-by-step task chunking
-    ├── reverse-engineering/SKILL.md  # Clean-room REA reverse engineering standard
-    └── code-graph/SKILL.md           # Graph traversal & blast-radius impact analysis
-
-.agent-data/
-└── code-graph/                       # Graph data storage & workspace isolation
-```
+| Task Intent | Skills to Load |
+| :--- | :--- |
+| **Reverse engineer authorized runtime/app behavior** | `reverse-engineering` / `reverse-engineer-anything` |
+| **Refactor, simplify, or implement code** | `ponytail` + relevant graph context |
+| **Create or redesign a UI surface** | `ui-ux-pro-max` and/or `hallmark`; `impeccable` for audit |
+| **Polish natural-language copy** | `humanizer` |
+| **Recent technology / community research** | `last30days` |
+| **Authorized website data extraction** | `scrapling-official` |
+| **Architecture / sequence / technical diagrams** | `diagram-design` |
+| **Search project knowledge base** | Onyx MCP (only if deployed & connected) |
 
 ---
 
@@ -51,8 +47,8 @@ docs/
 Before altering any code:
 1. Consult `docs/engineering/README.md`.
 2. Run graph impact check: `node .gitnexus/run.cjs impact <symbol> --direction upstream`.
-3. Check for existing reusable components in `src/components/` and `docs/engineering/COMPONENT_REUSE.md`.
-4. Decompose the task into chunks using the template in `.agents/skills/task-chunking/SKILL.md`.
+3. Check for existing reusable components in `src/components/` and `docs/engineering/ENGINEERING_RULES.md`.
+4. Decompose substantial tasks using `.agents/skills/task-chunking/SKILL.md`.
 
 ---
 
@@ -64,4 +60,3 @@ Every change must pass:
 3. `npm run build` (Turbopack production build check)
 4. `node .gitnexus/run.cjs detect-changes --scope all` (graph regression detection)
 5. `git diff` review before commit.
-
