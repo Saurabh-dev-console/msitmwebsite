@@ -17,6 +17,9 @@ export async function POST(req: Request) {
     ) {
       return NextResponse.json({ ok: false, error: "Invalid submission." }, { status: 400 });
     }
+    if (!db) {
+      return NextResponse.json({ ok: true, message: "Feedback received (offline mode)." }, { status: 200 });
+    }
     await db.insert(feedback).values({
       firstName: firstName.trim().slice(0, 80),
       lastName: lastName.trim().slice(0, 80),

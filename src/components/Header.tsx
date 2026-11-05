@@ -67,9 +67,9 @@ export default function Header() {
             <Image
               src="/brand/msitm-logo.png"
               alt="MSITM — Meena Shah Institute of Technology and Management"
-              width={300}
+              width={362}
               height={64}
-              className="h-12 md:h-14 w-auto"
+              className="h-12 md:h-14 w-auto object-contain"
               priority
             />
           </Link>
