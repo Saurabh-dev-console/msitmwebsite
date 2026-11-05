@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Blocks, PageHero, SidebarCard } from "@/components/chrome";
 import { NEWS_POSTS, newsPost } from "@/data/news";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return NEWS_POSTS.map((p) => ({ slug: p.slug }));
