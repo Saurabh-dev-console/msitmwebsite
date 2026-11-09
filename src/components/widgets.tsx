@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Icons } from "@/components/icons";
 import { PLACED_STUDENTS, RECRUITERS, TESTIMONIALS } from "@/data/site";
 
 /* ---------------- Recruiter marquee ---------------- */
@@ -155,8 +156,8 @@ export function SearchBox({ initial = "" }: { initial?: string }) {
 
 export function PrintButton() {
   return (
-    <button type="button" onClick={() => window.print()} className="btn btn-outline-dark btn-sm print-hidden">
-      <span aria-hidden="true">🖨</span> Print / Save as PDF
+    <button type="button" onClick={() => window.print()} className="btn btn-outline-dark btn-sm print-hidden gap-1.5">
+      <Icons.FileText className="h-4 w-4" aria-hidden="true" /> Print / Save as PDF
     </button>
   );
 }

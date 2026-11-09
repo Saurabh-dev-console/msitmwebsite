@@ -4,7 +4,7 @@ import { CONTACT } from "@/data/site";
 export default function Footer() {
   return (
     <footer className="band-navy print-hidden">
-      <div className="h-1 bg-gold-400" aria-hidden="true" />
+      <div className="h-1 bg-highlight" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="mt-4 flex flex-wrap gap-2 text-[0.72rem] font-semibold">
               {["Avadh University", "Maa Pateshwari University", "Integral University", "NIELIT", "NCPUL", "ISO 9001:2015"].map(
                 (a) => (
-                  <span key={a} className="border border-white/25 text-navy-100 px-2.5 py-1">
+                  <span key={a} className="border border-white/20 text-brand-foreground/80 rounded-md px-2.5 py-1 font-mono text-[0.72rem]">
                     {a}
                   </span>
                 )
@@ -99,7 +99,7 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <Link href="/contact" className="btn btn-gold btn-sm mt-5">
+            <Link href="/contact" className="btn btn-gold btn-sm btn-pill mt-5">
               Enquire now
             </Link>
           </div>

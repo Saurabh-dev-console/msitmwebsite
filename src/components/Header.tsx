@@ -52,7 +52,7 @@ export default function Header() {
             </a>
             <Link
               href="/admission-form"
-              className="hidden sm:inline-block bg-gold-400 text-navy-950 font-bold px-3 py-1 hover:bg-gold-300"
+              className="hidden sm:inline-block bg-highlight text-highlight-foreground font-bold px-3 py-1 rounded-full text-xs hover:brightness-95"
             >
               Admissions 2026–27
             </Link>
@@ -61,7 +61,7 @@ export default function Header() {
       </div>
 
       {/* Main bar */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-line print-hidden">
+      <div className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-border print-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 py-3">
           <Link href="/" className="flex items-center gap-3 shrink-0" aria-label="MSITM home">
             <Image
@@ -117,7 +117,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setExploreOpen(true)}
-              className="ml-2 btn btn-navy btn-sm flex items-center gap-1.5"
+              className="ml-2 btn btn-navy btn-sm btn-pill flex items-center gap-1.5"
               aria-haspopup="dialog"
             >
               <Icons.Menu className="h-4 w-4" aria-hidden="true" /> Explore MSITM
@@ -126,13 +126,13 @@ export default function Header() {
 
           {/* Tablet / mobile actions */}
           <div className="flex xl:hidden items-center gap-2">
-            <Link href="/search" className="btn btn-outline-dark btn-sm" aria-label="Search the website">
+            <Link href="/search" className="btn btn-outline-dark btn-sm rounded-lg" aria-label="Search the website">
               Search
             </Link>
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="btn btn-navy btn-sm flex items-center gap-1.5"
+              className="btn btn-navy btn-sm btn-pill flex items-center gap-1.5"
               aria-haspopup="dialog"
               aria-label="Open menu"
             >

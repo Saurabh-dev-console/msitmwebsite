@@ -1,19 +1,35 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Fraunces, Inter } from "next/font/google";
+import { Bricolage_Grotesque, Hind_Siliguri, Hind, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { cn } from "@/lib/utils";
 import "./globals.css";
 
-const display = Fraunces({
+const fontSans = Hind_Siliguri({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const fontDevanagari = Hind({
+  subsets: ["latin", "devanagari"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-devanagari",
+  display: "swap",
+});
+
+const fontDisplay = Bricolage_Grotesque({
+  subsets: ["latin"],
+  axes: ["wdth", "opsz"],
   variable: "--font-display",
   display: "swap",
 });
 
-const sans = Inter({
+const fontMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -36,11 +52,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
-      <body className="bg-white text-ink antialiased flex flex-col min-h-screen">
+    <html
+      lang="en"
+      className={cn(
+        "font-sans antialiased",
+        fontSans.variable,
+        fontDisplay.variable,
+        fontDevanagari.variable,
+        fontMono.variable
+      )}
+    >
+      <body className="bg-background text-foreground antialiased flex flex-col min-h-screen selection:bg-highlight selection:text-highlight-foreground">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:bg-gold-400 focus:text-navy-950 focus:px-4 focus:py-2 focus:font-bold"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:bg-highlight focus:text-highlight-foreground focus:px-4 focus:py-2 focus:font-bold"
         >
           Skip to main content
         </a>

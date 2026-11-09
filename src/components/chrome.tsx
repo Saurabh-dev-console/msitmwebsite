@@ -86,8 +86,9 @@ export function PageHero({
   imageAlt?: string;
 }) {
   return (
-    <header className="band-navy hero-grid-lines relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <header className="band-navy hero-graph-grid relative overflow-hidden">
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr] md:items-center">
           <div>
             <div className="[&_a]:!text-navy-100 [&_span[aria-current]]:!text-gold-300 [&_span]:!text-navy-100">

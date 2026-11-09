@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Icons } from "@/components/icons";
 import { SectionHeading } from "@/components/chrome";
 import { EnquiryForm } from "@/components/forms";
 import { CourseCard, PlacedGrid, RecruiterMarquee, TestimonialCards } from "@/components/widgets";
@@ -18,12 +19,16 @@ export default function Home() {
   return (
     <>
       {/* ============ HERO ============ */}
-      <section className="band-navy hero-grid-lines relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+      <section className="band-navy hero-graph-grid relative overflow-hidden">
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
           <div className="grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
             <div>
-              <p className="eyebrow eyebrow--light">Est. 1998 · Gonda, Uttar Pradesh</p>
-              <h1 className="font-display mt-4 text-4xl sm:text-5xl xl:text-[3.6rem] font-semibold leading-[1.06] text-white">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white mb-4">
+                <span className="size-1.5 rounded-full bg-gold-400 animate-pulse" />
+                <span>Est. 1998 · Gonda, Uttar Pradesh</span>
+              </div>
+              <h1 className="font-display mt-2 text-4xl sm:text-5xl xl:text-[3.6rem] font-semibold leading-[1.06] text-white">
                 Meena Shah Institute of Technology &amp; Management
               </h1>
               <p className="mt-5 text-lg text-navy-100 leading-relaxed max-w-xl">
@@ -31,10 +36,11 @@ export default function Home() {
                 27 years, from BBA &amp; BCA to NIELIT diplomas and industry-ready certificate courses.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/courses" className="btn btn-gold">
+                <Link href="/courses" className="btn btn-gold btn-lg btn-pill shadow-xs">
                   Explore courses
+                  <Icons.ArrowRight className="h-4 w-4 ml-1" />
                 </Link>
-                <Link href="/admission-form" className="btn btn-outline">
+                <Link href="/admission-form" className="btn btn-outline btn-lg btn-pill">
                   Admissions open 2026–27
                 </Link>
               </div>
