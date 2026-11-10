@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: "msitm.edu.in",
         pathname: "/wp-content/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.msitm.edu.in",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
   },
 };

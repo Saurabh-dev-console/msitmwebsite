@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GraduationCap } from "lucide-react";
 import type { Block } from "@/data/content";
+import { CAMPUS_IMAGES } from "@/data/site";
 
 /* ---------------- Section heading ---------------- */
 
@@ -68,6 +70,92 @@ export function Breadcrumbs({ trail }: { trail: { label: string; href?: string }
   );
 }
 
+/* ---------------- Contextual Hero Image Mapper ---------------- */
+
+function getContextualHeroImage(
+  trail: { label: string; href?: string }[],
+  title: string,
+  eyebrow: string
+): { src: string; alt: string; badge: string; subtitle: string } {
+  const text = [
+    ...trail.map((t) => t.label.toLowerCase()),
+    title.toLowerCase(),
+    eyebrow.toLowerCase(),
+  ].join(" ");
+
+  if (text.includes("faculty") || text.includes("department") || text.includes("registration") || text.includes("proctorial") || text.includes("staff")) {
+    return {
+      src: CAMPUS_IMAGES.collageMain,
+      alt: "MSITM Faculty & Administrative Wing",
+      badge: "Faculty & Administration",
+      subtitle: "Dedicated Academic Mentors",
+    };
+  }
+  if (text.includes("course") || text.includes("academic") || text.includes("bca") || text.includes("bba") || text.includes("b.com") || text.includes("bsc") || text.includes("diploma")) {
+    return {
+      src: CAMPUS_IMAGES.collage1,
+      alt: "MSITM Computer Labs & Academic Lectures",
+      badge: "Academic Programmes",
+      subtitle: "Practical Lab & Industry Training",
+    };
+  }
+  if (text.includes("admission") || text.includes("enrol") || text.includes("calender") || text.includes("process") || text.includes("form") || text.includes("eligibility") || text.includes("fee")) {
+    return {
+      src: CAMPUS_IMAGES.about,
+      alt: "MSITM Main Admissions Campus",
+      badge: "Admissions 2026–27",
+      subtitle: "Counselling & Campus Guidance",
+    };
+  }
+  if (text.includes("placement") || text.includes("career") || text.includes("recruiter") || text.includes("ranking") || text.includes("alumni")) {
+    return {
+      src: CAMPUS_IMAGES.rankings,
+      alt: "MSITM Career & Placement Wing",
+      badge: "Placement Excellence",
+      subtitle: "Leading Recruiters & Alumni",
+    };
+  }
+  if (text.includes("facility") || text.includes("facilities") || text.includes("library") || text.includes("lab") || text.includes("sports") || text.includes("hostel") || text.includes("transport")) {
+    return {
+      src: CAMPUS_IMAGES.collage2,
+      alt: "MSITM Campus Infrastructure & Labs",
+      badge: "Campus Infrastructure",
+      subtitle: "Modern Labs & Amenities",
+    };
+  }
+  if (text.includes("news") || text.includes("event") || text.includes("celebrat") || text.includes("farewell") || text.includes("activity")) {
+    return {
+      src: CAMPUS_IMAGES.event,
+      alt: "MSITM Campus Events & Celebrations",
+      badge: "Campus Life & Events",
+      subtitle: "Seminars, Sports & Celebrations",
+    };
+  }
+  if (text.includes("student") || text.includes("club") || text.includes("council") || text.includes("welfare")) {
+    return {
+      src: CAMPUS_IMAGES.collage3,
+      alt: "MSITM Student Community & Clubs",
+      badge: "Student Community",
+      subtitle: "Extra-Curricular Excellence",
+    };
+  }
+  if (text.includes("leadership") || text.includes("president") || text.includes("founder") || text.includes("vision") || text.includes("mission")) {
+    return {
+      src: CAMPUS_IMAGES.founder,
+      alt: "MSITM Leadership & Heritage",
+      badge: "Institutional Heritage",
+      subtitle: "Guiding Principles Since 1998",
+    };
+  }
+
+  return {
+    src: CAMPUS_IMAGES.about,
+    alt: "Meena Shah Institute of Technology & Management Campus",
+    badge: "MSITM Campus",
+    subtitle: "Gonda, Uttar Pradesh · Est. 1998",
+  };
+}
+
 /* ---------------- Page hero ---------------- */
 
 export function PageHero({
@@ -85,11 +173,17 @@ export function PageHero({
   image?: string;
   imageAlt?: string;
 }) {
+  const contextual = getContextualHeroImage(trail, title, eyebrow);
+  const heroImage = image || contextual.src;
+  const heroAlt = imageAlt || contextual.alt;
+  const badgeLabel = contextual.badge;
+  const subtitleLabel = contextual.subtitle;
+
   return (
     <header className="band-navy hero-graph-grid relative overflow-hidden">
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/35 pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr] md:items-center">
+        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
           <div>
             <div className="[&_a]:!text-navy-100 [&_span[aria-current]]:!text-gold-300 [&_span]:!text-navy-100">
               <Breadcrumbs trail={trail} />
@@ -99,26 +193,43 @@ export function PageHero({
               {title}
             </h1>
             <div className="rule-gold mt-5" aria-hidden="true" />
-            {description ? <p className="mt-5 max-w-2xl text-navy-100 leading-relaxed">{description}</p> : null}
+            {description ? (
+              <p className="mt-5 max-w-2xl text-navy-100 leading-relaxed font-normal text-base md:text-[1.05rem]">
+                {description}
+              </p>
+            ) : null}
           </div>
-          {image ? (
-            <figure className="relative hidden md:block">
-              <div className="absolute -inset-3 border border-gold-400/40" aria-hidden="true" />
+          <figure className="relative hidden md:block group">
+            <div className="absolute -inset-2 rounded-xl bg-gold-400/20 blur-[2px] transition-opacity duration-300 group-hover:bg-gold-400/30" aria-hidden="true" />
+            <div className="relative rounded-lg overflow-hidden border border-gold-400/40 shadow-2xl bg-navy-950 ring-1 ring-white/10">
               <Image
-                src={image}
-                alt={imageAlt ?? title}
+                src={heroImage}
+                alt={heroAlt}
                 width={640}
-                height={440}
-                className="relative w-full h-64 object-cover"
-                sizes="(max-width: 768px) 100vw, 420px"
+                height={400}
+                className="relative w-full h-64 lg:h-72 object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 460px"
               />
-            </figure>
-          ) : (
-            <div className="hidden md:flex flex-col items-end justify-center gap-3 text-right" aria-hidden="true">
-              <p className="font-display text-7xl text-white/10 font-semibold leading-none">1998</p>
-              <p className="text-xs tracking-[0.3em] uppercase text-gold-300/80">Gonda · Uttar Pradesh</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-950/20 to-transparent pointer-events-none" />
+
+              {/* Top status badge */}
+              <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-navy-900/90 backdrop-blur-md px-2.5 py-1 rounded border border-gold-400/30 text-[11px] font-semibold text-gold-300 shadow-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
+                MSITM Gonda
+              </div>
+
+              {/* Bottom info strip */}
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-navy-100 font-medium">
+                <span className="flex items-center gap-1.5 bg-navy-900/90 backdrop-blur-md px-2.5 py-1.5 rounded border border-white/10 text-white font-semibold">
+                  <GraduationCap className="w-3.5 h-3.5 text-gold-400" />
+                  {badgeLabel}
+                </span>
+                <span className="text-[11px] text-white/90 bg-black/50 backdrop-blur-sm px-2 py-1 rounded border border-white/10">
+                  {subtitleLabel}
+                </span>
+              </div>
             </div>
-          )}
+          </figure>
         </div>
       </div>
       <div className="h-1 bg-gold-400" aria-hidden="true" />
