@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero, SectionHeading } from "@/components/chrome";
 import { TestimonialCards } from "@/components/widgets";
-import { TESTIMONIALS } from "@/data/site";
+import { SITE_IMAGES, TESTIMONIALS } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Success Stories",
@@ -20,6 +20,11 @@ export default function SuccessStoriesPage() {
           { label: "Placements", href: "/placement" },
           { label: "Success Stories" },
         ]}
+        image={SITE_IMAGES.alumniSuccess}
+        imageAlt="Successful MSITM alumni mentors and graduates"
+        icon="Sparkles"
+        badge="Alumni Voices"
+        subtitle={`${TESTIMONIALS.length} Verified Stories`}
       />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <SectionHeading eyebrow="Voices" title="Graduates, in their own words" />

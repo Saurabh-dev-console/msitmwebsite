@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Icons } from "@/components/icons";
 import { Blocks, PageHero, SidebarCard } from "@/components/chrome";
 import { CertificateLookup } from "@/components/forms";
+import { SITE_IMAGES } from "@/data/site";
 import type { Block } from "@/data/content";
 
 export const metadata: Metadata = {
@@ -47,28 +49,38 @@ export default function BachpanCertificatePage() {
         title="Independence Day — Claim Your Certificate"
         description="Verification desk for young participants of the Bachpan Independence Day 2025 competitions."
         trail={[{ label: "Home", href: "/" }, { label: "Certificate Desk" }]}
+        image={SITE_IMAGES.campusCourtyard}
+        imageAlt="MSITM campus celebration and student participation"
+        icon="Award"
+        badge="Bachpan Pre-School"
+        subtitle="Independence Day 2025"
+        objectPosition="top"
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_380px]">
-          <div className="max-w-3xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
+        <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1fr_380px]">
+          <div className="max-w-3xl min-w-0">
             <Blocks blocks={blocks} />
             <p className="mt-8 text-sm">
               <Link
                 href="/celebrate-independence-day-with-creativity-and-fun-at-meena-shah-pre-school"
-                className="link-underline font-semibold text-navy-900"
+                className="link-underline inline-flex items-center gap-1.5 min-h-[44px] lg:min-h-0 font-semibold text-navy-900"
               >
-                ← Back to the event report
+                <Icons.ArrowLeft className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                <span>Back to the event report</span>
               </Link>
             </p>
           </div>
-          <aside className="self-start">
+          <aside className="self-start min-w-0">
             <SidebarCard title="Verify & download">
               <CertificateLookup event="Meena Shah Pre School (Bachpan) Independence Day 2025" />
-              <p className="mt-4 text-xs text-muted leading-relaxed">
-                Prefer to call? Call{" "}
-                <a href="tel:+919565661505" className="font-semibold text-navy-900">
-                  +91-9565661505
-                </a>
+              <p className="mt-4 text-xs text-muted leading-relaxed flex flex-wrap items-center gap-1.5">
+                <Icons.Phone className="h-3.5 w-3.5 text-gold-700 shrink-0" aria-hidden="true" />
+                <span>
+                  Prefer to call? Call{" "}
+                  <a href="tel:+919565661505" className="inline-flex items-center min-h-[44px] lg:min-h-0 font-semibold text-navy-900 whitespace-nowrap">
+                    +91-9565661505
+                  </a>
+                </span>
               </p>
             </SidebarCard>
           </aside>

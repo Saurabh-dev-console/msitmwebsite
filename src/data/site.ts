@@ -347,15 +347,41 @@ export const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
+export const SITE_IMAGES = {
+  // Generated bespoke MSITM editorial scenes
+  heroCampus: "/images/generated/hero-campus.jpg",
+  coursesUndergrad: "/images/generated/courses-undergrad.jpg",
+  coursesPostgrad: "/images/generated/courses-postgrad.jpg",
+  coursesDiploma: "/images/generated/courses-diploma.jpg",
+  coursesCertificate: "/images/generated/courses-certificate.jpg",
+  computerLab: "/images/generated/facility-computer-lab.jpg",
+  libraryHero: "/images/generated/library-hero.jpg",
+  placementCareers: "/images/generated/placement-careers.jpg",
+  admissionsCounselling: "/images/generated/admissions-counselling.jpg",
+  eventsCultural: "/images/generated/events-cultural.jpg",
+  alumniSuccess: "/images/generated/alumni-success.jpg",
+  // Verified authentic MSITM photographs served locally
+  campusCourtyard: "/images/authentic/campus-courtyard.jpg",
+  studentsStudy: "/images/authentic/students-study.jpg",
+  fresherCelebration: "/images/authentic/fresher-celebration.jpg",
+  classroomLecture: "/images/authentic/classroom-lecture.jpg",
+  campusTour: "/images/authentic/campus-tour.jpg",
+  libraryAuthentic: "/images/authentic/library-authentic.jpg",
+  lectureHallAuthentic: "/images/authentic/lecture-hall-authentic.jpg",
+  founder: "/images/authentic/founder-babaji.jpg",
+  rankings: "/images/authentic/convocation-rankings.jpg",
+} as const;
+
 export const CAMPUS_IMAGES = {
-  collageMain: `${U}/2025/01/home-collage-img.jpg`,
-  collage1: `${U}/2025/01/home-collage-img-1.jpg`,
-  collage2: `${U}/2025/01/home-collage-img-2.jpg`,
-  collage3: `${U}/2025/01/home-collage-img-3.jpg`,
-  collage4: `${U}/2025/01/home-collage-img-4.jpg`,
-  about: `${U}/2025/01/abt-img-1.jpg`,
-  homeBg: `${U}/2025/01/home-bg-4.jpg`,
-  event: `${U}/2025/05/IMG-20250517-WA0000.jpg`,
-  founder: `${U}/2025/07/babaji.jpg`,
-  rankings: `${U}/2025/04/rankings.jpg`,
+  collageMain: SITE_IMAGES.studentsStudy,
+  collage1: SITE_IMAGES.campusCourtyard,
+  collage2: SITE_IMAGES.fresherCelebration,
+  collage3: SITE_IMAGES.classroomLecture,
+  collage4: SITE_IMAGES.campusTour,
+  about: SITE_IMAGES.heroCampus,
+  homeBg: SITE_IMAGES.lectureHallAuthentic,
+  event: SITE_IMAGES.eventsCultural,
+  founder: SITE_IMAGES.founder,
+  rankings: SITE_IMAGES.rankings,
+  library: SITE_IMAGES.libraryAuthentic,
 };

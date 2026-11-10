@@ -3,8 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Icons } from "@/components/icons";
+import { Icon, Icons, type IconName } from "@/components/icons";
 import { CONTACT, NAVIGATION } from "@/data/site";
+
+const SECTION_ICONS: Record<string, IconName> = {
+  About: "Landmark",
+  Courses: "GraduationCap",
+  Admissions: "ClipboardCheck",
+  Faculty: "Users",
+  Facilities: "Building2",
+  Placements: "Briefcase",
+  "News & Events": "Newspaper",
+  IQAC: "ShieldCheck",
+};
 
 export default function Header() {
   const [exploreOpen, setExploreOpen] = useState(false);
@@ -34,27 +45,37 @@ export default function Header() {
   return (
     <>
       {/* Utility bar */}
-      <div className="bg-navy-950 text-white text-[0.8rem] print-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 py-2">
+      <div className="bg-navy-950 text-white text-[0.75rem] sm:text-[0.8rem] print-hidden">
+        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-2 sm:gap-4 py-1.5 sm:py-2">
           <p className="hidden md:block text-navy-100">
             Est. 1998 · Affiliated to Dr. R.M.L. Avadh University &amp; Maa Pateshwari University
           </p>
           <p className="md:hidden text-navy-100">Est. 1998 · Gonda, U.P.</p>
-          <div className="flex items-center gap-4 shrink-0">
-            <a href={CONTACT.phonePrimaryHref} className="hover:text-gold-300 font-semibold">
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+            <a
+              href={CONTACT.phonePrimaryHref}
+              className="hover:text-gold-300 font-semibold inline-flex items-center gap-1.5 min-h-[44px] lg:min-h-0 -my-1.5 lg:my-0 whitespace-nowrap"
+            >
+              <Icons.Phone className="h-3.5 w-3.5 text-gold-400 shrink-0" aria-hidden="true" />
               {CONTACT.phonePrimary}
             </a>
-            <span aria-hidden="true" className="text-white/25">
+            <span aria-hidden="true" className="hidden sm:inline text-white/25">
               |
             </span>
-            <a href={CONTACT.emailHref} className="hidden sm:inline hover:text-gold-300">
+            <a
+              href={CONTACT.emailHref}
+              className="hidden sm:inline-flex items-center gap-1.5 hover:text-gold-300 min-h-[44px] lg:min-h-0 -my-1.5 lg:my-0"
+            >
+              <Icons.Mail className="h-3.5 w-3.5 text-gold-400 shrink-0" aria-hidden="true" />
               {CONTACT.email}
             </a>
             <Link
               href="/admission-form"
-              className="hidden sm:inline-block bg-highlight text-highlight-foreground font-bold px-3 py-1 rounded-full text-xs hover:brightness-95"
+              className="hidden sm:inline-flex items-center min-h-[44px] lg:min-h-0 -my-1.5 lg:my-0"
             >
-              Admissions 2026–27
+              <span className="bg-highlight text-highlight-foreground font-bold px-3 py-1 rounded-full text-xs hover:brightness-95">
+                Admissions 2026–27
+              </span>
             </Link>
           </div>
         </div>
@@ -62,21 +83,21 @@ export default function Header() {
 
       {/* Main bar */}
       <div className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-border print-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex items-center gap-3 shrink-0" aria-label="MSITM home">
+        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4 py-2.5 sm:py-3">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink min-w-0" aria-label="MSITM home">
             <Image
               src="/brand/msitm-logo.png"
               alt="MSITM — Meena Shah Institute of Technology and Management"
               width={362}
               height={64}
-              className="h-12 md:h-14 w-auto object-contain"
+              className="h-8 min-[360px]:h-9 sm:h-12 md:h-14 w-auto max-w-[146px] min-[360px]:max-w-[188px] sm:max-w-none object-contain object-left"
               priority
             />
           </Link>
 
           {/* Desktop nav */}
           <nav aria-label="Primary" className="hidden xl:flex items-center gap-1">
-            {NAVIGATION.slice(0, 7).map((item) => (
+            {NAVIGATION.slice(0, 7).map((item, idx) => (
               <div
                 key={item.label}
                 className="relative"
@@ -88,14 +109,14 @@ export default function Header() {
                   aria-haspopup="true"
                   aria-expanded={openDropdown === item.label}
                   onFocus={() => setOpenDropdown(item.label)}
-                  className={`px-3 py-2.5 text-[0.86rem] font-semibold tracking-wide transition-colors ${
+                  className={`px-3 py-2.5 text-[0.86rem] font-semibold tracking-wide transition-colors whitespace-nowrap ${
                     openDropdown === item.label ? "text-gold-700" : "text-navy-900 hover:text-gold-700"
                   }`}
                 >
                   {item.label.toUpperCase()}
                 </Link>
                 {openDropdown === item.label ? (
-                  <div className="absolute left-0 top-full pt-1 min-w-72">
+                  <div className={`absolute ${idx >= 5 ? "right-0" : "left-0"} top-full pt-1 min-w-72`}>
                     <ul className="bg-white border border-line shadow-[0_18px_50px_-12px_rgba(6,15,36,0.35)] py-2">
                       {item.children.map((child) => (
                         <li key={child.href + child.label}>
@@ -125,14 +146,19 @@ export default function Header() {
           </nav>
 
           {/* Tablet / mobile actions */}
-          <div className="flex xl:hidden items-center gap-2">
-            <Link href="/search" className="btn btn-outline-dark btn-sm rounded-lg" aria-label="Search the website">
-              Search
+          <div className="flex xl:hidden items-center gap-1.5 sm:gap-2 shrink-0">
+            <Link
+              href="/search"
+              className="btn btn-outline-dark btn-sm rounded-lg min-h-[44px] min-w-[44px] px-2.5 sm:px-3"
+              aria-label="Search the website"
+            >
+              <Icons.Search className="h-4 w-4" aria-hidden="true" />
+              <span className="hidden sm:inline">Search</span>
             </Link>
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="btn btn-navy btn-sm btn-pill flex items-center gap-1.5"
+              className="btn btn-navy btn-sm btn-pill min-h-[44px] px-3 flex items-center gap-1.5"
               aria-haspopup="dialog"
               aria-label="Open menu"
             >
@@ -146,30 +172,31 @@ export default function Header() {
       {exploreOpen ? (
         <div role="dialog" aria-modal="true" aria-label="Explore MSITM" className="fixed inset-0 z-50 overflow-y-auto">
           <div className="absolute inset-0 bg-navy-950/70" onClick={() => setExploreOpen(false)} aria-hidden="true" />
-          <div className="relative bg-white mx-auto my-4 md:my-8 max-w-6xl w-[calc(100%-2rem)] border-t-4 border-gold-400 shadow-2xl">
-            <div className="flex items-center justify-between px-6 md:px-10 py-5 border-b border-line">
-              <div>
+          <div className="relative bg-white mx-auto my-4 md:my-8 max-w-6xl w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] border-t-4 border-gold-400 shadow-2xl">
+            <div className="flex items-center justify-between gap-3 px-4 sm:px-6 md:px-10 py-4 sm:py-5 border-b border-line">
+              <div className="min-w-0">
                 <p className="eyebrow">Site index</p>
-                <p className="font-display text-2xl text-navy-900 font-semibold mt-1">Explore MSITM</p>
+                <p className="font-display text-xl sm:text-2xl text-navy-900 font-semibold mt-1">Explore MSITM</p>
               </div>
               <button
                 type="button"
                 onClick={() => setExploreOpen(false)}
-                className="btn btn-outline-dark btn-sm flex items-center gap-1.5"
+                className="btn btn-outline-dark btn-sm min-h-[44px] flex items-center gap-1.5 shrink-0"
                 autoFocus
               >
                 Close <Icons.Close className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6 md:px-10 py-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 px-4 sm:px-6 md:px-10 py-6 sm:py-8">
               {NAVIGATION.map((section) => (
                 <nav key={section.label} aria-label={section.label}>
                   <Link
                     href={section.href}
                     onClick={() => setExploreOpen(false)}
-                    className="font-display text-lg font-semibold text-navy-900 hover:text-gold-700"
+                    className="font-display text-lg font-semibold text-navy-900 hover:text-gold-700 inline-flex items-center gap-2"
                   >
-                    {section.label}
+                    <Icon name={SECTION_ICONS[section.label] ?? "Compass"} className="h-4 w-4 text-gold-600 shrink-0" />
+                    <span>{section.label}</span>
                   </Link>
                   <div className="h-0.5 w-8 bg-gold-400 my-2" aria-hidden="true" />
                   <ul className="space-y-1.5">
@@ -188,15 +215,29 @@ export default function Header() {
                 </nav>
               ))}
             </div>
-            <div className="band-navy px-6 md:px-10 py-5 flex flex-wrap items-center gap-x-8 gap-y-2 text-sm">
-              <a href={CONTACT.phonePrimaryHref} className="font-semibold text-white hover:text-gold-300">
+            <div className="band-navy px-4 sm:px-6 md:px-10 py-4 sm:py-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+              <a
+                href={CONTACT.phonePrimaryHref}
+                className="font-semibold text-white hover:text-gold-300 inline-flex items-center gap-1.5 min-h-[44px] lg:min-h-0"
+              >
+                <Icons.Phone className="h-4 w-4 text-gold-400 shrink-0" aria-hidden="true" />
                 Call {CONTACT.phonePrimary}
               </a>
-              <a href={CONTACT.emailHref} className="text-navy-100 hover:text-gold-300">
+              <a
+                href={CONTACT.emailHref}
+                className="text-navy-100 hover:text-gold-300 inline-flex items-center gap-1.5 break-all sm:break-normal min-h-[44px] lg:min-h-0"
+              >
+                <Icons.Mail className="h-4 w-4 text-gold-400 shrink-0" aria-hidden="true" />
                 {CONTACT.email}
               </a>
-              <Link href="/search" onClick={() => setExploreOpen(false)} className="text-navy-100 hover:text-gold-300">
-                Search the site →
+              <Link
+                href="/search"
+                onClick={() => setExploreOpen(false)}
+                className="text-navy-100 hover:text-gold-300 inline-flex items-center gap-1.5 min-h-[44px] lg:min-h-0"
+              >
+                <Icons.Search className="h-4 w-4 text-gold-400 shrink-0" aria-hidden="true" />
+                Search the site
+                <Icons.ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -208,23 +249,23 @@ export default function Header() {
         <div role="dialog" aria-modal="true" aria-label="Menu" className="fixed inset-0 z-50 xl:hidden">
           <div className="absolute inset-0 bg-navy-950/70" onClick={() => setMobileOpen(false)} aria-hidden="true" />
           <div className="relative bg-white h-full w-[88%] max-w-sm ml-auto flex flex-col shadow-2xl">
-            <div className="flex items-center justify-between px-5 py-4 border-b border-line">
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-line">
               <p className="font-display text-xl font-semibold text-navy-900">Menu</p>
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="btn btn-outline-dark btn-sm p-1.5"
+                className="btn btn-outline-dark btn-sm min-h-[44px] min-w-[44px] p-1.5"
                 aria-label="Close menu"
                 autoFocus
               >
                 <Icons.Close className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
-            <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-5 py-4 space-y-1">
+            <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-5 py-3 space-y-0.5">
               <Link
                 href="/"
                 onClick={() => setMobileOpen(false)}
-                className="block py-2.5 font-display text-lg font-semibold text-navy-900"
+                className="flex items-center min-h-[44px] py-2 font-display text-lg font-semibold text-navy-900"
               >
                 Home
               </Link>
@@ -232,11 +273,11 @@ export default function Header() {
                 const open = openSection === section.label;
                 return (
                   <div key={section.label} className="border-t border-line">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-2">
                       <Link
                         href={section.href}
                         onClick={() => setMobileOpen(false)}
-                        className="py-3 font-semibold text-navy-900"
+                        className="flex-1 min-w-0 min-h-[44px] flex items-center py-2.5 font-semibold text-navy-900"
                       >
                         {section.label}
                       </Link>
@@ -245,19 +286,19 @@ export default function Header() {
                         onClick={() => setOpenSection(open ? null : section.label)}
                         aria-expanded={open}
                         aria-label={`${open ? "Collapse" : "Expand"} ${section.label}`}
-                        className="px-3 py-2 text-gold-700 font-bold"
+                        className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-gold-700 font-bold shrink-0"
                       >
-                        {open ? "−" : "+"}
+                        {open ? <Icons.Minus className="h-4 w-4" aria-hidden="true" /> : <Icons.Plus className="h-4 w-4" aria-hidden="true" />}
                       </button>
                     </div>
                     {open ? (
-                      <ul className="pb-3 space-y-1">
+                      <ul className="pb-3 space-y-0.5">
                         {section.children.map((child) => (
                           <li key={child.href + child.label}>
                             <Link
                               href={child.href}
                               onClick={() => setMobileOpen(false)}
-                              className="block py-1.5 pl-3 text-[0.93rem] text-ink/80 border-l-2 border-gold-100 hover:text-navy-900 hover:border-gold-400"
+                              className="flex items-center min-h-[44px] py-2 pl-3 text-[0.93rem] text-ink/80 border-l-2 border-gold-100 hover:text-navy-900 hover:border-gold-400"
                             >
                               {child.label}
                             </Link>
@@ -268,24 +309,29 @@ export default function Header() {
                   </div>
                 );
               })}
-              <div className="border-t border-line pt-3 pb-1">
+              <div className="border-t border-line pt-2 pb-1">
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="block py-2.5 font-semibold text-navy-900"
+                  className="flex items-center min-h-[44px] py-2 font-semibold text-navy-900"
                 >
                   Contact
                 </Link>
-                <Link href="/search" onClick={() => setMobileOpen(false)} className="block py-2.5 text-ink/80">
-                  Search the site →
+                <Link
+                  href="/search"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 min-h-[44px] py-2 text-ink/80"
+                >
+                  <Icons.Search className="h-4 w-4 text-gold-700" aria-hidden="true" />
+                  Search the site
                 </Link>
               </div>
             </nav>
-            <div className="band-navy px-5 py-4 text-sm space-y-1.5">
-              <a href={CONTACT.phonePrimaryHref} className="block font-semibold text-gold-300">
+            <div className="band-navy px-5 py-4 text-sm space-y-1">
+              <a href={CONTACT.phonePrimaryHref} className="flex w-fit items-center min-h-[44px] -my-1 font-semibold text-gold-300">
                 {CONTACT.phonePrimary}
               </a>
-              <a href={CONTACT.emailHref} className="block text-navy-100">
+              <a href={CONTACT.emailHref} className="flex w-fit items-center min-h-[44px] -my-1 text-navy-100 break-all">
                 {CONTACT.email}
               </a>
               <Link href="/admission-form" onClick={() => setMobileOpen(false)} className="btn btn-gold btn-sm mt-2 w-full">

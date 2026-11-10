@@ -276,14 +276,22 @@ html:lang(hi) {
   gap: 0.5rem;
   font-weight: 600;
   font-size: 0.875rem;
-  height: 2.5rem; /* 40px default */
-  padding: 0 1rem;
+  line-height: 1.25;
+  min-height: 2.5rem; /* 40px default */
+  padding: 0.5rem 1rem;
   border-radius: var(--radius-lg);
   border: 1px solid transparent;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
   cursor: pointer;
   text-decoration: none;
-  white-space: nowrap;
+  text-align: center;
+  white-space: normal;
+}
+
+@media (min-width: 400px) {
+  .btn {
+    white-space: nowrap;
+  }
 }
 
 .btn:active {
@@ -339,17 +347,24 @@ html:lang(hi) {
 }
 
 .btn-sm {
-  height: 2rem; /* 32px sm */
-  padding: 0 0.75rem;
+  min-height: 2rem; /* 32px sm on desktop */
+  padding: 0.25rem 0.75rem;
   font-size: 0.8rem;
   border-radius: var(--radius-md);
 }
 
 .btn-lg {
-  height: 2.75rem; /* 44px lg */
-  padding: 0 1.25rem;
+  min-height: 2.75rem; /* 44px lg */
+  padding: 0.5rem 1.25rem;
   font-size: 1rem;
   border-radius: var(--radius-xl);
+}
+
+@media (max-width: 1023px) {
+  .btn,
+  .btn-sm {
+    min-height: 2.75rem; /* 44px touch target across phones & tablets */
+  }
 }
 
 .btn-pill {
@@ -430,7 +445,7 @@ html:lang(hi) {
 .field-select,
 .field-textarea {
   width: 100%;
-  height: 2.5rem; /* 40px default */
+  min-height: 2.5rem; /* 40px default */
   border: 1px solid var(--input);
   background: var(--card);
   padding: 0.5rem 0.75rem;
@@ -439,6 +454,30 @@ html:lang(hi) {
   color: var(--foreground);
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+@media (max-width: 1023px) {
+  .field-input,
+  .field-select {
+    min-height: 2.75rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .field-input,
+  .field-select,
+  .field-textarea {
+    font-size: 1rem; /* Prevents iOS Safari auto-zoom on focus */
+  }
+
+  .table-msitm {
+    font-size: 0.875rem;
+  }
+
+  .table-msitm thead th,
+  .table-msitm tbody td {
+    padding: 0.625rem 0.75rem;
+  }
 }
 
 .field-textarea {

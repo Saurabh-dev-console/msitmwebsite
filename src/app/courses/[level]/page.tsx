@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Blocks, PageHero, SidebarCard, SiblingNav } from "@/components/chrome";
+import { Icons } from "@/components/icons";
 import { CourseCard } from "@/components/widgets";
 import { LEVELS, coursesByLevel, type Course } from "@/data/courses";
+import { COURSE_LEVEL_VISUALS, COURSE_VISUALS } from "@/data/visuals";
 import type { Block } from "@/data/content";
 
 const LEVEL_EXTRA: Record<string, Block[]> = {
@@ -85,6 +87,7 @@ export default async function CourseLevelPage({ params }: { params: Promise<{ le
     label: l.title,
     href: `/courses/${slug}`,
   }));
+  const lvlVis = COURSE_LEVEL_VISUALS[level];
 
   return (
     <>
@@ -93,50 +96,62 @@ export default async function CourseLevelPage({ params }: { params: Promise<{ le
         title={data.title}
         description={data.intro}
         trail={[{ label: "Home", href: "/" }, { label: "Courses", href: "/courses" }, { label: data.title }]}
+        image={lvlVis?.image}
+        imageAlt={lvlVis?.imageAlt}
+        icon={lvlVis?.icon}
+        badge={lvlVis?.badge}
+        subtitle={lvlVis?.subtitle}
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
-          <div className="space-y-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
+        <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1fr_300px]">
+          <div className="space-y-10 min-w-0">
             <div className="grid sm:grid-cols-2 gap-4">
-              {courses.map((c) => (
-                <CourseCard
-                  key={c.slug}
-                  title={c.title}
-                  fullName={c.fullName}
-                  meta={`${c.kind}${c.duration ? ` · ${c.duration}` : ""}`}
-                  href={`/courses/${level}/${c.slug}`}
-                />
-              ))}
+              {courses.map((c) => {
+                const cVis = COURSE_VISUALS[c.slug];
+                return (
+                  <CourseCard
+                    key={c.slug}
+                    title={c.title}
+                    fullName={c.fullName}
+                    meta={`${c.kind}${c.duration ? ` · ${c.duration}` : ""}`}
+                    href={`/courses/${level}/${c.slug}`}
+                    icon={cVis?.icon}
+                    image={cVis?.image}
+                    imageAlt={cVis?.imageAlt}
+                  />
+                );
+              })}
             </div>
-            <div className="max-w-3xl">
+            <div className="max-w-3xl min-w-0">
               <Blocks blocks={LEVEL_EXTRA[level] ?? []} />
             </div>
-            <div className="band-navy px-6 py-8 md:px-10">
+            <div className="band-navy rounded-xl px-5 py-7 sm:px-6 sm:py-8 md:px-10 min-w-0">
               <p className="eyebrow eyebrow--light">Admissions 2026–27</p>
               <p className="font-display mt-2 text-2xl font-semibold text-white">
                 Ready to apply for {data.title.toLowerCase()}?
               </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Link href="/admission-form" className="btn btn-gold">
+              <div className="mt-4 flex flex-col min-[400px]:flex-row flex-wrap gap-3">
+                <Link href="/admission-form" className="btn btn-gold w-full min-[400px]:w-auto">
                   Open admission form
+                  <Icons.ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-                <Link href="/contact" className="btn btn-outline">
+                <Link href="/contact" className="btn btn-outline w-full min-[400px]:w-auto">
                   Talk to a counsellor
                 </Link>
               </div>
             </div>
           </div>
-          <aside className="space-y-6 self-start">
+          <aside className="space-y-6 self-start min-w-0">
             <SidebarCard title="Course levels">
               <SiblingNav items={siblings} current={`/courses/${level}`} />
             </SidebarCard>
             <SidebarCard title="Programmes on this page">
-              <ul className="space-y-2">
+              <ul className="space-y-0.5 lg:space-y-2">
                 {courses.map((c) => (
                   <li key={c.slug}>
                     <Link
                       href={`/courses/${level}/${c.slug}`}
-                      className="text-sm text-ink/80 hover:text-gold-700 hover:underline underline-offset-4"
+                      className="inline-flex items-center min-h-[44px] lg:min-h-0 py-1 lg:py-0 text-sm text-ink/80 hover:text-gold-700 hover:underline underline-offset-4"
                     >
                       {c.title} — {c.fullName}
                     </Link>

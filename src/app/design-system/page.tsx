@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Icons } from "@/components/icons";
 import { PageHero, SectionHeading } from "@/components/chrome";
+import { SITE_IMAGES } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Design System",
@@ -12,8 +14,13 @@ export default function DesignSystemPage() {
       <PageHero
         eyebrow="Identity · Specification"
         title="MSITM Design System"
-        description="Premium academic institution, modern editorial website. Restrained navy, white and gold — strong photography, minimalist interface, excellent typography."
+        description="Premium academic institution, modern editorial website. Restrained dark green, white and gold — strong photography, minimalist interface, excellent typography."
         trail={[{ label: "Home", href: "/" }, { label: "Design System" }]}
+        image={SITE_IMAGES.coursesDiploma}
+        imageAlt="MSITM digital design system and laboratory architecture"
+        icon="Palette"
+        badge="Visual System"
+        subtitle="Tokens, Type & Components"
       />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-16">
         <section>
@@ -43,9 +50,11 @@ export default function DesignSystemPage() {
 
         <section>
           <SectionHeading eyebrow="02 · Typography" title="Editorial serif + grotesque sans" text="Fraunces for display, Inter for interface and body. Clear hierarchy: eyebrow → display → rule → lede → body." />
-          <div className="mt-6 card-line p-6 md:p-10 space-y-6">
+          <div className="mt-6 card-line p-5 sm:p-6 md:p-10 space-y-6 min-w-0">
             <p className="eyebrow">Eyebrow · 12px · uppercase · tracked</p>
-            <p className="font-display text-4xl md:text-5xl font-semibold text-navy-900">Display headline sets the academic tone</p>
+            <p className="font-display text-2xl sm:text-4xl md:text-5xl font-semibold text-navy-900 break-words">
+              Display headline sets the academic tone
+            </p>
             <div className="rule-gold" aria-hidden="true" />
             <p className="lede font-display text-navy-900">The lede carries the page promise in one or two sentences — larger, serif, navy.</p>
             <p className="leading-[1.85] text-ink/90 max-w-3xl">
@@ -58,17 +67,20 @@ export default function DesignSystemPage() {
         <section>
           <SectionHeading eyebrow="03 · Controls" title="Buttons & forms" text="Sharp corners, honest labels, visible focus. Every button on this site performs a real action." />
           <div className="mt-6 flex flex-wrap gap-3">
-            <span className="btn btn-gold">Gold · primary <span aria-hidden="true">→</span></span>
+            <span className="btn btn-gold">
+              Gold · primary
+              <Icons.ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </span>
             <span className="btn btn-navy">Navy · secondary</span>
             <span className="btn btn-outline-dark">Outline · tertiary</span>
             <span className="btn btn-navy btn-sm">Small</span>
           </div>
           <div className="mt-6 grid md:grid-cols-2 gap-4 max-w-3xl">
-            <div>
+            <div className="min-w-0">
               <label className="field-label" htmlFor="ds-demo">Field label</label>
               <input id="ds-demo" className="field-input" placeholder="Input with gold focus ring" />
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="field-label" htmlFor="ds-demo2">Select</label>
               <select id="ds-demo2" className="field-select">
                 <option>Option one</option>

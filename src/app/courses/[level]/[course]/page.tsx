@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Blocks, PageHero, SidebarCard } from "@/components/chrome";
+import { Icon, Icons, type IconName } from "@/components/icons";
 import { CourseCard, PrintButton } from "@/components/widgets";
 import { COURSES, LEVELS, courseHref, coursesByLevel } from "@/data/courses";
+import { COURSE_VISUALS } from "@/data/visuals";
 import type { Block } from "@/data/content";
 
 export function generateStaticParams() {
@@ -32,11 +34,13 @@ export default async function CourseDetailPage({
   const levelData = LEVELS[c.level];
   const related = coursesByLevel(c.level).filter((x) => x.slug !== c.slug);
 
-  const factItems = [
-    ...(c.duration ? [{ label: "Duration", value: c.duration }] : []),
-    ...(c.eligibility ? [{ label: "Eligibility", value: c.eligibility }] : []),
-    ...(c.awarding ? [{ label: "Awarding / Authority", value: c.awarding }] : []),
-    { label: "Level", value: `${c.levelLabel} · ${c.kind}` },
+  const cVis = COURSE_VISUALS[c.slug];
+
+  const factItems: { label: string; value: string; icon: IconName }[] = [
+    ...(c.duration ? [{ label: "Duration", value: c.duration, icon: "Clock" as IconName }] : []),
+    ...(c.eligibility ? [{ label: "Eligibility", value: c.eligibility, icon: "CheckCircle2" as IconName }] : []),
+    ...(c.awarding ? [{ label: "Awarding / Authority", value: c.awarding, icon: "Award" as IconName }] : []),
+    { label: "Level", value: `${c.levelLabel} · ${c.kind}`, icon: "Layers" as IconName },
   ];
 
   const blocks: Block[] = [
@@ -64,23 +68,35 @@ export default async function CourseDetailPage({
           { label: levelData.title, href: `/courses/${c.level}` },
           { label: c.title },
         ]}
+        image={cVis?.image}
+        imageAlt={cVis?.imageAlt}
+        icon={cVis?.icon}
+        badge={cVis?.badge}
+        subtitle={cVis?.subtitle}
+        objectPosition={cVis?.objectPosition}
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_320px]">
-          <div className="space-y-8 max-w-3xl">
-            <dl className="grid sm:grid-cols-2 gap-px bg-line border border-line">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
+        <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1fr_320px]">
+          <div className="space-y-8 max-w-3xl min-w-0">
+            <dl className="grid sm:grid-cols-2 gap-px bg-line border border-line rounded-xl overflow-hidden shadow-xs min-w-0">
               {factItems.map((f) => (
-                <div key={f.label} className="bg-white p-5">
-                  <dt className="text-xs font-bold uppercase tracking-[0.14em] text-gold-700">{f.label}</dt>
-                  <dd className="mt-1.5 font-semibold text-navy-900 leading-relaxed text-[0.95rem]">{f.value}</dd>
+                <div key={f.label} className="bg-white p-4 sm:p-5 flex items-start gap-3 min-w-0">
+                  <span className="h-8 w-8 rounded-lg bg-navy-50 border border-navy-100 text-gold-700 flex items-center justify-center shrink-0 mt-0.5">
+                    <Icon name={f.icon} className="h-4 w-4" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <dt className="text-xs font-bold uppercase tracking-[0.14em] text-gold-700">{f.label}</dt>
+                    <dd className="mt-1 font-semibold text-navy-900 leading-relaxed text-[0.95rem] break-words">{f.value}</dd>
+                  </div>
                 </div>
               ))}
             </dl>
             <Blocks blocks={blocks} />
-            <div className="flex flex-wrap gap-3 print-hidden">
+            <div className="flex flex-col min-[380px]:flex-row flex-wrap gap-3 print-hidden">
               <PrintButton />
-              <Link href="/admission-form" className="btn btn-gold btn-sm">
+              <Link href="/admission-form" className="btn btn-gold btn-sm w-full min-[380px]:w-auto">
                 Apply for this course
+                <Icons.ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
               </Link>
             </div>
             {related.length > 0 ? (
@@ -94,13 +110,14 @@ export default async function CourseDetailPage({
                       fullName={r.fullName}
                       meta={r.kind}
                       href={courseHref(r)}
+                      icon={COURSE_VISUALS[r.slug]?.icon}
                     />
                   ))}
                 </div>
               </div>
             ) : null}
           </div>
-          <aside className="space-y-6 self-start print-hidden">
+          <aside className="space-y-6 self-start print-hidden min-w-0">
             <SidebarCard title="Apply for 2026–27">
               <p className="text-sm text-muted leading-relaxed">
                 Admissions are open. Submit the form and a counsellor will respond within one business day.
@@ -113,13 +130,13 @@ export default async function CourseDetailPage({
               </Link>
             </SidebarCard>
             <SidebarCard title={`More ${levelData.title.toLowerCase()}`}>
-              <ul className="space-y-2">
+              <ul className="space-y-0.5 lg:space-y-2">
                 {coursesByLevel(c.level).map((x) => (
                   <li key={x.slug}>
                     <Link
                       href={courseHref(x)}
                       aria-current={x.slug === c.slug ? "page" : undefined}
-                      className={`text-sm hover:text-gold-700 hover:underline underline-offset-4 ${
+                      className={`inline-flex items-center min-h-[44px] lg:min-h-0 py-1 lg:py-0 text-sm hover:text-gold-700 hover:underline underline-offset-4 ${
                         x.slug === c.slug ? "font-bold text-gold-700" : "text-ink/80"
                       }`}
                     >

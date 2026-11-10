@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Blocks, PageHero, SidebarCard, SiblingNav } from "@/components/chrome";
 import { IQAC_PAGES } from "@/data/content";
+import { IQAC_VISUALS } from "@/data/visuals";
 
 const SIBLINGS = [
   { label: "IQAC Overview", href: "/iqac" },
@@ -24,6 +25,7 @@ export default async function IqacSubPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const page = IQAC_PAGES[slug];
   if (!page) notFound();
+  const vis = IQAC_VISUALS[slug];
 
   return (
     <>
@@ -36,13 +38,18 @@ export default async function IqacSubPage({ params }: { params: Promise<{ slug: 
           { label: "IQAC", href: "/iqac" },
           { label: page.title },
         ]}
+        image={vis?.image}
+        imageAlt={vis?.imageAlt}
+        icon={vis?.icon ?? "ShieldCheck"}
+        badge={vis?.badge}
+        subtitle={vis?.subtitle}
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
-          <div className="max-w-3xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
+        <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1fr_300px]">
+          <div className="max-w-3xl min-w-0">
             <Blocks blocks={page.blocks} />
           </div>
-          <aside className="space-y-6 self-start">
+          <aside className="space-y-6 self-start min-w-0">
             <SidebarCard title="IQAC sections">
               <SiblingNav items={SIBLINGS} current={`/iqac/${slug}`} />
             </SidebarCard>

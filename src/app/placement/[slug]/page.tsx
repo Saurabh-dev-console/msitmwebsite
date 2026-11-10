@@ -38,13 +38,16 @@ export default async function PlacementSubPage({ params }: { params: Promise<{ s
           { label: "Placements", href: "/placement" },
           { label: page.title },
         ]}
+        image={page.image}
+        imageAlt={page.imageAlt}
+        icon={slug === "about-placement-cell" ? "Building2" : "Presentation"}
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
-          <div className="max-w-3xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
+        <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1fr_300px]">
+          <div className="max-w-3xl min-w-0">
             <Blocks blocks={page.blocks} />
           </div>
-          <aside className="space-y-6 self-start">
+          <aside className="space-y-6 self-start min-w-0">
             <SidebarCard title="Placements">
               <SiblingNav items={siblings} current={`/placement/${slug}`} />
             </SidebarCard>

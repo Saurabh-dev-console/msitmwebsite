@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Bricolage_Grotesque, Hind_Siliguri, Hind, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
@@ -32,6 +32,12 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://msitm.edu.in"),

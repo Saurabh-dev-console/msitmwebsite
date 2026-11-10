@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Icon, Icons, type IconName } from "@/components/icons";
 import { PageHero, SectionHeading, SidebarCard, SiblingNav } from "@/components/chrome";
-import { CAMPUS_IMAGES, NAVIGATION } from "@/data/site";
+import { NAVIGATION, SITE_IMAGES } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -15,6 +16,78 @@ const ABOUT_NAV = NAVIGATION.find((n) => n.label === "About")!.children.map((c) 
   href: c.href,
 }));
 
+const VALUES: { title: string; text: string; icon: IconName }[] = [
+  {
+    title: "Respect",
+    text: "Respect forms the foundation of personal and professional growth. We emphasize showing gratitude towards parents, teachers, and everyone who positively influences our journey.",
+    icon: "HeartHandshake",
+  },
+  {
+    title: "Humanity",
+    text: "In a world increasingly driven by material pursuits, humanity remains at the heart of MSITM's mission. We encourage students to serve society and support the underprivileged.",
+    icon: "Users",
+  },
+  {
+    title: "Honesty",
+    text: "As the saying goes, “honesty is the best policy.” We strive to instill unwavering integrity in our students — in time, values and resources.",
+    icon: "ShieldCheck",
+  },
+  {
+    title: "Dedication",
+    text: "Dedication is the key to success. We guide students to recognise their aptitudes and pursue their passions, fostering a love for learning and a commitment to excellence.",
+    icon: "Target",
+  },
+];
+
+const DISTINCTIONS: { title: string; text: string; icon: IconName }[] = [
+  {
+    title: "A legacy of excellence",
+    text: "With over 27 years of excellence, MSITM Degree College continues to be a pillar of professional education in Gonda — empowering students to lead with confidence and purpose.",
+    icon: "Award",
+  },
+  {
+    title: "Career support and industry visits",
+    text: "We organise industry visits, workshops, and guest lectures to prepare students for the demands of the job market.",
+    icon: "Briefcase",
+  },
+  {
+    title: "Empowering rural students",
+    text: "MSITM is dedicated to uplifting students from rural areas, offering an inclusive and supportive environment to succeed academically and professionally.",
+    icon: "Sparkles",
+  },
+];
+
+const INFRA_CARDS: { title: string; text: string; href: string; image: string; icon: IconName }[] = [
+  {
+    title: "Library",
+    text: "A comprehensive collection of books to support academic growth.",
+    href: "/facilities/library",
+    image: SITE_IMAGES.libraryAuthentic,
+    icon: "BookOpen",
+  },
+  {
+    title: "Computer labs",
+    text: "250+ modern computers to explore cutting-edge technology.",
+    href: "/facilities/computer-lab",
+    image: SITE_IMAGES.computerLab,
+    icon: "Monitor",
+  },
+  {
+    title: "Online teaching",
+    text: "Uninterrupted education through robust virtual platforms.",
+    href: "/facilities",
+    image: SITE_IMAGES.coursesDiploma,
+    icon: "Laptop",
+  },
+  {
+    title: "Classrooms",
+    text: "Spacious, collaborative spaces for theory and practice.",
+    href: "/facilities/lecture-hall",
+    image: SITE_IMAGES.lectureHallAuthentic,
+    icon: "Presentation",
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -23,12 +96,15 @@ export default function AboutPage() {
         title="About MSITM"
         description="Established in 1998 by Hazrat Mehboob Meena Shah — a mission of quality education in IT and Management for Gonda and the Devipatan region."
         trail={[{ label: "Home", href: "/" }, { label: "About" }]}
-        image={CAMPUS_IMAGES.collage1}
-        imageAlt="Students at MSITM"
+        image={SITE_IMAGES.campusCourtyard}
+        imageAlt="Students at MSITM Gonda campus"
+        icon="Landmark"
+        badge="Legacy Since 1998"
+        subtitle="Devipatan Mandal's Premier Institute"
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
-          <div className="space-y-12 max-w-3xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
+        <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1fr_300px]">
+          <div className="space-y-12 max-w-3xl min-w-0">
             <div className="space-y-4">
               <p className="lede font-display text-navy-900">
                 Meena Shah Institute of Technology and Management (MSITM) Degree College, Gonda, was established
@@ -47,15 +123,15 @@ export default function AboutPage() {
             <section>
               <SectionHeading eyebrow="Principles" title="Core values" />
               <div className="mt-6 grid sm:grid-cols-2 gap-4">
-                {[
-                  ["Respect", "Respect forms the foundation of personal and professional growth. We emphasize showing gratitude towards parents, teachers, and everyone who positively influences our journey."],
-                  ["Humanity", "In a world increasingly driven by material pursuits, humanity remains at the heart of MSITM's mission. We encourage students to serve society and support the underprivileged."],
-                  ["Honesty", "As the saying goes, “honesty is the best policy.” We strive to instill unwavering integrity in our students — in time, values and resources."],
-                  ["Dedication", "Dedication is the key to success. We guide students to recognise their aptitudes and pursue their passions, fostering a love for learning and a commitment to excellence."],
-                ].map(([title, text]) => (
-                  <div key={title} className="card-line p-6">
-                    <p className="font-display text-xl font-semibold text-navy-900">{title}</p>
-                    <p className="mt-2 text-sm text-ink/80 leading-relaxed">{text}</p>
+                {VALUES.map((v) => (
+                  <div key={v.title} className="card-line p-6 flex items-start gap-3.5">
+                    <span className="h-10 w-10 rounded-lg bg-navy-50 border border-navy-100 text-gold-700 flex items-center justify-center shrink-0">
+                      <Icon name={v.icon} className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="font-display text-xl font-semibold text-navy-900">{v.title}</p>
+                      <p className="mt-2 text-sm text-ink/80 leading-relaxed">{v.text}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -64,14 +140,13 @@ export default function AboutPage() {
             <section>
               <SectionHeading eyebrow="Distinction" title="A legacy, a bridge, a mission" />
               <div className="mt-6 space-y-4">
-                {[
-                  ["A legacy of excellence", "With over 27 years of excellence, MSITM Degree College continues to be a pillar of professional education in Gonda — empowering students to lead with confidence and purpose."],
-                  ["Career support and industry visits", "We organise industry visits, workshops, and guest lectures to prepare students for the demands of the job market."],
-                  ["Empowering rural students", "MSITM is dedicated to uplifting students from rural areas, offering an inclusive and supportive environment to succeed academically and professionally."],
-                ].map(([title, text]) => (
-                  <div key={title} className="border-l-4 border-gold-400 bg-gold-50 px-6 py-4">
-                    <p className="font-bold text-navy-900">{title}</p>
-                    <p className="mt-1 text-[0.95rem] text-ink/85 leading-relaxed">{text}</p>
+                {DISTINCTIONS.map((d) => (
+                  <div key={d.title} className="border border-gold-400/50 bg-gold-50/80 rounded-xl px-6 py-4 flex items-start gap-3.5">
+                    <Icon name={d.icon} className="h-5 w-5 text-gold-700 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-bold text-navy-900">{d.title}</p>
+                      <p className="mt-1 text-[0.95rem] text-ink/85 leading-relaxed">{d.text}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -80,33 +155,47 @@ export default function AboutPage() {
             <section>
               <SectionHeading eyebrow="Infrastructure" title="Infrastructure & facilities" text="A learning environment supported by modern infrastructure." />
               <div className="mt-6 grid sm:grid-cols-2 gap-4">
-                {[
-                  ["Library", "A comprehensive collection of books to support academic growth."],
-                  ["Computer labs", "250+ modern computers to explore cutting-edge technology."],
-                  ["Online teaching", "Uninterrupted education through robust virtual platforms."],
-                  ["Classrooms", "Spacious, collaborative spaces for theory and practice."],
-                ].map(([title, text]) => (
-                  <Link key={title} href="/facilities" className="card-line group p-6">
-                    <p className="font-display text-lg font-semibold text-navy-900 group-hover:text-gold-700">{title}</p>
-                    <p className="mt-1.5 text-sm text-muted leading-relaxed">{text}</p>
+                {INFRA_CARDS.map((card) => (
+                  <Link key={card.title} href={card.href} className="card-line group overflow-hidden flex flex-col">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy-950">
+                      <Image
+                        src={card.image}
+                        alt={`${card.title} at MSITM`}
+                        fill
+                        loading="lazy"
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" aria-hidden="true" />
+                      <span className="absolute bottom-2.5 left-3 inline-flex items-center gap-1.5 rounded-md bg-navy-950/90 border border-gold-400/35 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-gold-300">
+                        <Icon name={card.icon} className="h-3.5 w-3.5 text-gold-400" />
+                        <span>{card.title}</span>
+                      </span>
+                    </div>
+                    <div className="p-5 flex-1">
+                      <p className="font-display text-lg font-semibold text-navy-900 group-hover:text-gold-700">{card.title}</p>
+                      <p className="mt-1.5 text-sm text-muted leading-relaxed">{card.text}</p>
+                    </div>
                   </Link>
                 ))}
               </div>
             </section>
 
             <figure>
-              <Image
-                src={CAMPUS_IMAGES.collage4}
-                alt="Campus life at MSITM"
-                width={1200}
-                height={640}
-                className="w-full h-auto object-cover border border-line"
-                sizes="(max-width: 1024px) 100vw, 720px"
-              />
+              <div className="rounded-xl overflow-hidden border border-line shadow-xs">
+                <Image
+                  src={SITE_IMAGES.campusTour}
+                  alt="Faculty and students on an academic tour at MSITM"
+                  width={1200}
+                  height={640}
+                  className="w-full h-auto object-cover"
+                  sizes="(max-width: 1024px) 100vw, 720px"
+                />
+              </div>
               <figcaption className="mt-2 text-sm text-muted italic">Life at MSITM, Gonda (photograph from msitm.edu.in).</figcaption>
             </figure>
           </div>
-          <aside className="space-y-6 self-start">
+          <aside className="space-y-6 self-start min-w-0">
             <SidebarCard title="In this section">
               <SiblingNav items={ABOUT_NAV} current="/about" />
             </SidebarCard>
@@ -114,6 +203,7 @@ export default function AboutPage() {
               <p className="text-sm text-muted leading-relaxed">Messages from our founder, president, manager, dean and principal.</p>
               <Link href="/about/president-leadership" className="btn btn-navy btn-sm mt-4 w-full">
                 Read messages
+                <Icons.ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
               </Link>
             </SidebarCard>
           </aside>

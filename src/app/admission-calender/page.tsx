@@ -14,6 +14,9 @@ export default function AdmissionCalendarPage() {
         title={page.title}
         description={page.description}
         trail={[{ label: "Home", href: "/" }, { label: "Admissions" }, { label: page.title }]}
+        image={page.image}
+        imageAlt={page.imageAlt}
+        icon="CalendarDays"
       />
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <Blocks blocks={page.blocks} />

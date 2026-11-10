@@ -77,26 +77,26 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-4">
+    <form onSubmit={onSubmit} noValidate className="space-y-4 min-w-0">
       <div className={`grid gap-4 ${compact ? "" : "sm:grid-cols-2"}`}>
-        <div>
+        <div className="min-w-0">
           <label className="field-label" htmlFor="eq-first">First name *</label>
           <input className="field-input" id="eq-first" name="firstName" autoComplete="given-name" />
           <FieldError message={errors.firstName} />
         </div>
-        <div>
+        <div className="min-w-0">
           <label className="field-label" htmlFor="eq-last">Last name *</label>
           <input className="field-input" id="eq-last" name="lastName" autoComplete="family-name" />
           <FieldError message={errors.lastName} />
         </div>
       </div>
       <div className={`grid gap-4 ${compact ? "" : "sm:grid-cols-2"}`}>
-        <div>
+        <div className="min-w-0">
           <label className="field-label" htmlFor="eq-phone">Phone</label>
           <input className="field-input" id="eq-phone" name="phone" type="tel" autoComplete="tel" placeholder="+91-…" />
           <FieldError message={errors.phone} />
         </div>
-        <div>
+        <div className="min-w-0">
           <label className="field-label" htmlFor="eq-email">Email *</label>
           <input className="field-input" id="eq-email" name="email" type="email" autoComplete="email" />
           <FieldError message={errors.email} />
@@ -175,26 +175,26 @@ export function AdmissionForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-4">
-      <div>
+    <form onSubmit={onSubmit} noValidate className="space-y-4 min-w-0">
+      <div className="min-w-0">
         <label className="field-label" htmlFor="ad-name">Full name *</label>
         <input className="field-input" id="ad-name" name="fullName" autoComplete="name" />
         <FieldError message={errors.fullName} />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <div>
+        <div className="min-w-0">
           <label className="field-label" htmlFor="ad-email">Email *</label>
           <input className="field-input" id="ad-email" name="email" type="email" autoComplete="email" />
           <FieldError message={errors.email} />
         </div>
-        <div>
+        <div className="min-w-0">
           <label className="field-label" htmlFor="ad-phone">Phone *</label>
           <input className="field-input" id="ad-phone" name="phone" type="tel" autoComplete="tel" />
           <FieldError message={errors.phone} />
         </div>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <div>
+        <div className="min-w-0">
           <label className="field-label" htmlFor="ad-course">Programme applied for *</label>
           <select className="field-select" id="ad-course" name="course" defaultValue="">
             <option value="" disabled>Select a programme…</option>
@@ -206,7 +206,7 @@ export function AdmissionForm() {
           </select>
           <FieldError message={errors.course} />
         </div>
-        <div>
+      <div className="min-w-0">
           <label className="field-label" htmlFor="ad-qual">Highest qualification</label>
           <select className="field-select" id="ad-qual" name="qualification" defaultValue="Class 12 (appearing / passed)">
             <option>Class 10</option>
@@ -313,7 +313,7 @@ export function FeedbackForm({ kind, title }: { kind: "feedback" | "survey"; tit
           Something went wrong while sending. Please try again later.
         </p>
       ) : null}
-      <button type="submit" disabled={status === "sending"} className="btn btn-navy disabled:opacity-60">
+      <button type="submit" disabled={status === "sending"} className="btn btn-navy w-full sm:w-auto disabled:opacity-60">
         {status === "sending" ? "Sending…" : "Submit"}
       </button>
     </form>
@@ -386,7 +386,7 @@ export function CertificateLookup({ event }: { event: string }) {
           Something went wrong. Please call the helpline +91-9918942937.
         </p>
       ) : null}
-      <button type="submit" disabled={status === "sending"} className="btn btn-navy disabled:opacity-60">
+      <button type="submit" disabled={status === "sending"} className="btn btn-navy w-full sm:w-auto disabled:opacity-60">
         {status === "sending" ? "Checking…" : "Verify & request certificate"}
       </button>
     </form>

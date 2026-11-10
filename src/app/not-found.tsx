@@ -1,11 +1,15 @@
 import Link from "next/link";
+import { Icons } from "@/components/icons";
 import { SearchBox } from "@/components/widgets";
 
 export default function NotFound() {
   return (
     <div className="mx-auto max-w-2xl px-4 sm:px-6 py-16 md:py-24 text-center">
+      <div className="h-16 w-16 rounded-2xl bg-navy-900 text-gold-400 border border-gold-400/40 flex items-center justify-center mx-auto mb-5 shadow-md">
+        <Icons.SearchX className="h-8 w-8" aria-hidden="true" />
+      </div>
       <p className="eyebrow">Error 404</p>
-      <h1 className="font-display mt-3 text-4xl md:text-5xl font-semibold text-navy-900">Page not found</h1>
+      <h1 className="font-display mt-3 text-3xl sm:text-4xl md:text-5xl font-semibold text-navy-900">Page not found</h1>
       <div className="rule-gold mt-5 mx-auto" aria-hidden="true" />
       <p className="mt-5 text-muted leading-relaxed">
         The page you are looking for has moved or never existed. Try searching, or start from one of these

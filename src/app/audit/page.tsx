@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Icon, type IconName } from "@/components/icons";
 import { PageHero, SectionHeading } from "@/components/chrome";
+import { SITE_IMAGES } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Forensic Audit & Rebuild Report",
@@ -120,6 +122,12 @@ const QA_CHECKS: [string, string][] = [
 ];
 
 export default function AuditPage() {
+  const stats: { num: string; label: string; icon: IconName }[] = [
+    { num: "80", label: "URLs crawled & mapped", icon: "Globe" },
+    { num: "23", label: "Empty pages rebuilt honestly", icon: "FileCheck2" },
+    { num: "52", label: "Placed-student profiles migrated", icon: "Users" },
+    { num: "18", label: "Testimonials migrated verbatim", icon: "Quote" },
+  ];
   return (
     <>
       <PageHero
@@ -127,25 +135,28 @@ export default function AuditPage() {
         title="Forensic Audit & Rebuild Report"
         description="Reference: msitm.edu.in — crawled in full (sitemap + link graph). 80 URLs inventoried, every page content-mapped, all findings documented below."
         trail={[{ label: "Home", href: "/" }, { label: "Audit Report" }]}
+        image={SITE_IMAGES.computerLab}
+        imageAlt="MSITM engineering and quality audit review"
+        icon="ClipboardCheck"
+        badge="Public Audit"
+        subtitle="80 URLs Verified & Mapped"
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-16">
-        <section className="grid md:grid-cols-4 gap-4">
-          {[
-            ["80", "URLs crawled & mapped"],
-            ["23", "Empty pages rebuilt honestly"],
-            ["52", "Placed-student profiles migrated"],
-            ["18", "Testimonials migrated verbatim"],
-          ].map(([num, label]) => (
-            <div key={label} className="card-line p-6 text-center">
-              <p className="stat-numeral text-4xl text-navy-900">{num}</p>
-              <p className="mt-1 text-sm text-muted">{label}</p>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16 space-y-12 sm:space-y-16">
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          {stats.map((s) => (
+            <div key={s.label} className="card-line p-4 sm:p-6 text-center min-w-0">
+              <span className="h-9 w-9 rounded-lg bg-navy-50 border border-navy-100 text-gold-700 flex items-center justify-center mx-auto mb-3">
+                <Icon name={s.icon} className="h-4.5 w-4.5" />
+              </span>
+              <p className="stat-numeral text-3xl sm:text-4xl text-navy-900">{s.num}</p>
+              <p className="mt-1 text-xs sm:text-sm text-muted leading-snug">{s.label}</p>
             </div>
           ))}
         </section>
 
-        <section>
+        <section className="min-w-0">
           <SectionHeading eyebrow="Phase 1" title="Complete URL inventory & mapping" text="Old URL → new URL → disposition. Slugs with historic misspellings were deliberately preserved." />
-          <div className="mt-6 overflow-x-auto border border-line">
+          <div className="mt-6 overflow-x-auto max-w-full rounded-xl border border-line">
             <table className="table-msitm min-w-[720px]">
               <thead>
                 <tr>
@@ -183,17 +194,17 @@ export default function AuditPage() {
               ["Official social profiles", "No Facebook/LinkedIn/YouTube profile links found (only share widgets). No social icons invented."],
               ["Fee structures & schedules", "Never published on the reference site. Not invented — pages direct visitors to the admissions office."],
             ].map(([item, note]) => (
-              <div key={item} className="border border-gold-500 bg-gold-50 px-5 py-4">
-                <p className="font-bold text-navy-900 font-mono text-sm">{item}</p>
-                <p className="mt-1 text-sm text-ink/85">{note}</p>
+              <div key={item} className="border border-gold-500 bg-gold-50 rounded-xl px-4 sm:px-5 py-4 min-w-0">
+                <p className="font-bold text-navy-900 font-mono text-sm break-words">{item}</p>
+                <p className="mt-1 text-sm text-ink/85 leading-relaxed">{note}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section>
+        <section className="min-w-0">
           <SectionHeading eyebrow="Phase 2" title="Critical UI/UX audit" text="Fourteen findings — each fixed in this rebuild, not praised away." />
-          <div className="mt-6 overflow-x-auto border border-line">
+          <div className="mt-6 overflow-x-auto max-w-full rounded-xl border border-line">
             <table className="table-msitm min-w-[720px]">
               <thead>
                 <tr>
@@ -215,9 +226,9 @@ export default function AuditPage() {
           </div>
         </section>
 
-        <section>
+        <section className="min-w-0">
           <SectionHeading eyebrow="Phase 5" title="Asset mapping" />
-          <div className="mt-6 overflow-x-auto border border-line">
+          <div className="mt-6 overflow-x-auto max-w-full rounded-xl border border-line">
             <table className="table-msitm min-w-[720px]">
               <thead>
                 <tr>
@@ -256,9 +267,9 @@ export default function AuditPage() {
           </p>
         </section>
 
-        <section>
+        <section className="min-w-0">
           <SectionHeading eyebrow="Phase 8" title="Visual QA report" />
-          <div className="mt-6 overflow-x-auto border border-line">
+          <div className="mt-6 overflow-x-auto max-w-full rounded-xl border border-line">
             <table className="table-msitm min-w-[640px]">
               <thead>
                 <tr>
