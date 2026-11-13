@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/icons";
 import { PageHero, SectionHeading } from "@/components/chrome";
-import { SITE_IMAGES } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Forensic Audit & Rebuild Report",
@@ -135,8 +134,6 @@ export default function AuditPage() {
         title="Forensic Audit & Rebuild Report"
         description="Reference: msitm.edu.in — crawled in full (sitemap + link graph). 80 URLs inventoried, every page content-mapped, all findings documented below."
         trail={[{ label: "Home", href: "/" }, { label: "Audit Report" }]}
-        image={SITE_IMAGES.computerLab}
-        imageAlt="MSITM engineering and quality audit review"
         icon="ClipboardCheck"
         badge="Public Audit"
         subtitle="80 URLs Verified & Mapped"

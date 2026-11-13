@@ -4,7 +4,6 @@ import { Icons } from "@/components/icons";
 import { PageHero } from "@/components/chrome";
 import { SearchBox } from "@/components/widgets";
 import { searchSite } from "@/data/search";
-import { SITE_IMAGES } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Search",
@@ -27,8 +26,6 @@ export default async function SearchPage({
         title="Search MSITM"
         description="Search courses, faculty, placements, news and every page of this website."
         trail={[{ label: "Home", href: "/" }, { label: "Search" }]}
-        image={SITE_IMAGES.libraryHero}
-        imageAlt="MSITM library and academic directory"
         icon="Search"
         badge="Site Directory"
         subtitle="Courses, Faculty & Records"

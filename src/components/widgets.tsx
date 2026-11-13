@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Icon, Icons, type IconName } from "@/components/icons";
-import { PLACED_STUDENTS, RECRUITERS, TESTIMONIALS } from "@/data/site";
+import { PLACED_STUDENTS, RECRUITERS, TESTIMONIALS, type HeroSlide } from "@/data/site";
 
 function initialsFor(name: string) {
   return name
@@ -275,5 +275,124 @@ export function CourseCard({
         </span>
       </div>
     </Link>
+  );
+}
+
+/* ---------------- Hero slider ---------------- */
+
+const HERO_CROSSFADE_MS = 1800;
+const HERO_INTERVAL_MS = 6000;
+
+export function HeroSlider({
+  slides,
+  children,
+  footer,
+}: {
+  slides: readonly HeroSlide[];
+  children: ReactNode;
+  footer?: ReactNode;
+}) {
+  const [active, setActive] = useState(0);
+  const [settled, setSettled] = useState(0);
+  const [docHidden, setDocHidden] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onMotionChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    const onVisibilityChange = () => setDocHidden(document.hidden);
+
+    const initTimer = window.setTimeout(() => {
+      setPrefersReducedMotion(mql.matches);
+      setDocHidden(document.hidden);
+    }, 0);
+
+    mql.addEventListener("change", onMotionChange);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      window.clearTimeout(initTimer);
+      mql.removeEventListener("change", onMotionChange);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, []);
+
+  const isPlaying = slides.length > 1 && !docHidden && !prefersReducedMotion;
+
+  useEffect(() => {
+    if (!isPlaying) return;
+    const id = window.setInterval(() => {
+      setActive((prev) => (prev + 1) % slides.length);
+    }, HERO_INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, [isPlaying, slides.length]);
+
+  useEffect(() => {
+    if (settled === active) return;
+    const timer = window.setTimeout(() => setSettled(active), HERO_CROSSFADE_MS + 50);
+    return () => window.clearTimeout(timer);
+  }, [active, settled]);
+
+  return (
+    <section
+      className="band-navy relative overflow-hidden lg:min-h-[calc(100svh-7.25rem)] lg:flex lg:flex-col"
+      aria-label="MSITM convocation and academic highlights"
+    >
+      <div className="relative flex-1 flex flex-col lg:justify-end">
+        {/* Full-screen seamless crossfading background on desktop (lg+); full-width uncropped top showcase on mobile/tablet */}
+        <div className="relative aspect-[1024/631] w-full overflow-hidden bg-navy-950 select-none lg:aspect-auto lg:absolute lg:inset-0">
+          {slides.map((slide, i) => {
+            const isActive = i === active;
+            const isUnderlay = i === settled && i !== active;
+            return (
+              <div
+                key={slide.src}
+                aria-hidden={!isActive}
+                style={{
+                  transition: prefersReducedMotion
+                    ? "none"
+                    : `opacity ${HERO_CROSSFADE_MS}ms cubic-bezier(0.37, 0, 0.63, 1)`,
+                }}
+                className={`absolute inset-0 will-change-[opacity] ${
+                  isActive
+                    ? "z-20 opacity-100"
+                    : isUnderlay
+                      ? "z-10 opacity-100"
+                      : "z-0 opacity-0 pointer-events-none"
+                }`}
+              >
+                <Image
+                  src={slide.src}
+                  alt={isActive ? slide.alt : ""}
+                  fill
+                  priority={i === 0}
+                  loading="eager"
+                  sizes="100vw"
+                  className="object-cover object-[50%_15%]"
+                />
+              </div>
+            );
+          })}
+
+          {/* Left editorial scrim & bottom subtle grounding on desktop, preserving full clarity across the stage */}
+          <div
+            className="hidden lg:block absolute inset-0 z-30 pointer-events-none bg-[linear-gradient(90deg,oklch(0.20_0.04_166/0.92)_0%,oklch(0.20_0.04_166/0.82)_46%,transparent_72%)]"
+            aria-hidden="true"
+          />
+          <div
+            className="hidden lg:block absolute inset-x-0 bottom-0 h-24 z-30 pointer-events-none bg-gradient-to-t from-navy-950/65 to-transparent"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Hero typography */}
+        <div className="relative z-40 lg:mx-auto lg:w-full lg:max-w-7xl lg:px-8 lg:py-12 xl:py-14">
+          <div className="min-w-0 px-4 sm:px-6 lg:px-0 py-7 sm:py-9 lg:py-0 lg:max-w-[30rem] xl:max-w-[33rem] lg:drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
+            {children}
+          </div>
+        </div>
+      </div>
+
+      {footer ? <div className="relative z-40">{footer}</div> : null}
+    </section>
   );
 }

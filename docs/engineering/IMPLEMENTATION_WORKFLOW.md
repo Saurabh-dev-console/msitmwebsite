@@ -1,83 +1,66 @@
-# Implementation Workflow & Task Chunking Protocol
+# Implementation Workflow & Task Decomposition Protocol (v3.0)
 
-This document establishes the official engineering lifecycle for executing features, enhancements, and bug fixes across the MSITM platform.
+**Specification**: Antigravity Engineering Environment v3.0  
+**Authority**: Mandatory protocol for planning, chunking, and verifying changes.
 
 ---
 
-## 1. The 6-Stage Task Chunking Lifecycle
+## 1. Execution Engine Routing
 
-Every substantial engineering objective must be decomposed into six verifiable sequential chunks:
+Before implementing, choose the right execution engine matching task shape (Section 3.4):
+
+```text
+Task Arrives
+    │
+    ├─► Fits in 1 context window; needs interactive steering ──► Session + /plan
+    │
+    ├─► One long objective with command-verifiable criteria  ──► Antigravity Native /goal
+    │
+    └─► Backlog of many small independent stories (unattended) ──► Ralph Loop (prd.json)
+```
+
+---
+
+## 2. Six-Stage Chunking Protocol
+
+Every non-trivial engineering task follows this chunked sequence:
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
 │ Chunk 1: Architecture & Knowledge Graph Inspection           │
+│         (npx @colbymchenry/codegraph query / impact)        │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
 │ Chunk 2: Dependency, Interface & Scope Mapping              │
+│         (Check existing components in src/components/)      │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
 │ Chunk 3: Structured Implementation Plan Formulation         │
+│         (Establish design brief for UI, API contracts)      │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
 │ Chunk 4: Incremental Code Implementation (Ponytail Standard)│
+│         (Smallest complete change; failing test first)      │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ Chunk 5: Validation Checkpoints (Typecheck, Lint, Build)    │
+│ Chunk 5: Verification Pipeline                              │
+│         (npm run typecheck && npm run lint && npm test)     │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ Chunk 6: Regression Review, Graph Diff Analysis & Commit    │
+│ Chunk 6: Production Build & Graph Sync                      │
+│         (npm run build && codegraph sync)                   │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 2. Chunk-by-Chunk Responsibilities
+## 3. Pre-Flight & Verification Mandates
 
-### Chunk 1: Architecture & Knowledge Graph Inspection
-- Query the GitNexus knowledge graph for relevant symbols and flows (`node .gitnexus/run.cjs context <symbol>`).
-- Identify caller and callee hierarchies.
-- Inspect current database schemas in `src/db/schema.ts` if data persistence is touched.
-
-### Chunk 2: Dependency, Interface & Scope Mapping
-- Determine all files, components, and route handlers within the blast radius.
-- Calculate upstream risk: `node .gitnexus/run.cjs impact <symbol> --direction upstream`.
-- Check `docs/engineering/COMPONENT_REUSE.md` to identify existing reusable elements.
-- Verify whether external package installations are needed against `docs/engineering/DEPENDENCY_POLICY.md`.
-
-### Chunk 3: Structured Implementation Plan Formulation
-- Draft a concise, step-by-step implementation plan.
-- Identify the smallest complete diff that satisfies requirements (Ponytail standard).
-- Document design decisions, prop interfaces, and fallback strategies.
-
-### Chunk 4: Incremental Code Implementation
-- Apply modifications cleanly using `edit_file` or `write_file`.
-- Adhere to design tokens in `src/app/globals.css`.
-- Ensure all icons come from `@/components/icons`.
-- Maintain honeypots and validation logic in form handlers.
-
-### Chunk 5: Validation Checkpoints
-- Execute TypeScript validation: `npm run typecheck`.
-- Execute ESLint validation: `npm run lint`.
-- Execute production build compilation: `npm run build`.
-- If any check fails, resolve the failure immediately before moving to the next chunk.
-
-### Chunk 6: Regression Review & Finalization
-- Run graph diff impact analysis: `node .gitnexus/run.cjs detect-changes --scope all`.
-- Inspect git status and working tree: `git diff`.
-- Refresh graph index if new symbols were introduced: `node .gitnexus/run.cjs analyze --index-only`.
-- Commit with a clear, conventional commit message (`feat:`, `fix:`, `refactor:`, `chore:`).
-
----
-
-## 3. Mandatory Execution Rules
-
-1. **No Monolithic Leaps**: Large features must not be written in one giant edit. Break them down.
-2. **Independent Verifiability**: Each chunk must have a distinct test or verification command that confirms success.
-3. **Transparent Blockers**: If an unexpected dependency error, missing database table, or type mismatch occurs, halt and report it with exact error logs. Never silently bypass failed tests.
-4. **Never Repeat Completed Work**: Reuse existing helpers (`src/lib/utils.ts`, `src/data/`, `src/components/chrome.tsx`).
-
+1. **Evidence Over Assertion**: Never declare completion without quoting the exact passing command output and exit code (0).
+2. **Blast Radius Analysis**: Run `npx @colbymchenry/codegraph impact <symbol>` before altering any exported component, function, or schema.
+3. **No Slop**: For UI work, confirm the Design Brief Gate and verify against the 14 anti-slop rules in `docs/engineering/UI_STANDARDS.md`.

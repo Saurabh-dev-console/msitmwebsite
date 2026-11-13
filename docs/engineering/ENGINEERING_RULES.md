@@ -28,9 +28,10 @@ All engineers, contributors, and AI agents modifying this codebase must adhere s
 
 ### 1.4 Production Reliability & Security
 - **Preserve Validation**: Never remove existing client-side or server-side input sanitization or honeypot spam protection.
-- **Database Safety**: Never alter database schemas or delete fields in `src/db/schema.ts` without validating all dependent callers via the code graph (`node .gitnexus/run.cjs impact <tableName> --direction upstream`).
+- **Database Safety**: Never alter database schemas or delete fields in `src/db/schema.ts` without validating all dependent callers via the code graph (`npx @colbymchenry/codegraph impact <symbol>`).
 - **Zero Secrets in Version Control**: Secrets, API keys, and connection strings must always be sourced from environment variables (`process.env.*`).
 - **Robust Error Handling**: Route handlers must handle timeouts and database exceptions gracefully with appropriate HTTP status codes (`400`, `404`, `500`) and JSON payloads.
+- **UI & Accessibility**: Adhere strictly to @[ui-standards](./UI_STANDARDS.md) and the 14 anti-slop rules.
 
 ---
 
@@ -70,7 +71,7 @@ import { Icons } from "@/components/icons";
 
 ### 3.1 Search-First Protocol
 Before creating any new component:
-1. **Query the Code Graph**: `node .gitnexus/run.cjs context <ConceptName>`.
+1. **Query the Code Graph**: `npx @colbymchenry/codegraph query <ConceptName>` or `npx @colbymchenry/codegraph impact <SymbolName>`.
 2. **Inspect Existing Inventory**: Check `src/components/` (`chrome.tsx`, `widgets.tsx`, `forms.tsx`).
 3. **Parameterize Instead of Forking**: If an existing component covers 80% of requirements, extend its props (e.g. optional `subtitle?: string`) instead of duplicating.
 

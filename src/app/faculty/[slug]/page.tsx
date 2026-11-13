@@ -45,8 +45,6 @@ export default async function FacultyGroupPage({ params }: { params: Promise<{ s
           { label: "Faculty", href: "/faculty" },
           { label: group.title },
         ]}
-        image={vis?.image}
-        imageAlt={vis?.imageAlt}
         icon={vis?.icon}
         badge={vis?.badge}
         subtitle={vis?.subtitle}

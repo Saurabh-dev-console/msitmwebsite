@@ -4,7 +4,6 @@ import { Icon, Icons } from "@/components/icons";
 import { PageHero } from "@/components/chrome";
 import { CourseCard } from "@/components/widgets";
 import { COURSES, LEVELS, courseHref } from "@/data/courses";
-import { SITE_IMAGES } from "@/data/site";
 import { COURSE_LEVEL_VISUALS, COURSE_VISUALS } from "@/data/visuals";
 
 export const metadata: Metadata = {
@@ -21,8 +20,6 @@ export default function CoursesIndex() {
         title="Courses at MSITM"
         description="From three-year degrees to six-week certificates — every programme is designed to turn study into profession."
         trail={[{ label: "Home", href: "/" }, { label: "Courses" }]}
-        image={SITE_IMAGES.coursesUndergrad}
-        imageAlt="Students collaborating across MSITM degree, diploma and certificate programmes"
         icon="GraduationCap"
         badge="21 Programmes"
         subtitle="Degrees, Diplomas & Certificates"

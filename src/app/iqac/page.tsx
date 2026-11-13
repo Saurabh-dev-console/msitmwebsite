@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Icon, Icons } from "@/components/icons";
 import { PageHero } from "@/components/chrome";
 import { IQAC_PAGES } from "@/data/content";
-import { SITE_IMAGES } from "@/data/site";
 import { IQAC_VISUALS } from "@/data/visuals";
 
 export const metadata: Metadata = {
@@ -19,8 +18,6 @@ export default function IqacIndex() {
         title="Internal Quality Assurance Cell"
         description="Making quality assurance an integral part of the functioning of the institution — in the spirit of NAAC's national mandate."
         trail={[{ label: "Home", href: "/" }, { label: "IQAC" }]}
-        image={SITE_IMAGES.coursesPostgrad}
-        imageAlt="IQAC academic leadership review and institutional governance at MSITM"
         icon="ShieldCheck"
         badge="IQAC · NAAC"
         subtitle="Quality Benchmarks & Records"

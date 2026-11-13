@@ -55,13 +55,38 @@ export const COURSES: Course[] = [
     kind: "Under Graduate Course",
     title: "BCA",
     fullName: "Bachelor of Computer Applications",
-    duration: "3 years (full-time)",
+    duration: "3 years (6 semesters, full-time)",
     eligibility: "Class 12 in any stream (admissions office confirms university norms each session)",
     awarding: "Dr. R.M.L. Avadh University, Faizabad (Ayodhya) / Maa Pateshwari University",
     intro: [
       "MSITM Degree College offers a full-time three-year program leading to a Bachelor's degree in Computer Application awarded by Dr. R.M.L. Avadh University, Faizabad (UP), and Maa Pateshwari University.",
       "In the modern professional world, the BCA program has become an important preparatory-level graduate course after completing Class 12, especially in the context of the IT industry. With the exponential growth in the IT sector in our country, and with the entry and investment of various multinational companies, it is reasonable to expect that the IT industry will require a large number of competent professionals in the coming years, particularly at the entry level. It is in this context that BCA assumes a significant role.",
     ],
+    sections: [
+      {
+        heading: "Student services & academic tracking",
+        body: [
+          "Enrolled BCA students access their semester fee ledger, printed receipts, attendance eligibility, internal marks, sick-leave gate passes, and exam admit cards through the MSITM Student Portal.",
+        ],
+        list: [
+          "Dedicated 250+ system computer lab & IoT practical batches",
+          "Semester-wise sessional assessments, coding practicals, and final-year project guidance",
+          "Campus placement readiness through the Training & Placement Cell",
+        ],
+      },
+    ],
+    table: {
+      head: ["Semester", "Core Computing & Laboratory Focus"],
+      rows: [
+        ["Semester I", "Computer Fundamentals & Office Automation, Programming in C, Business Communication, Practical Lab-I"],
+        ["Semester II", "Data Structures using C, Digital Electronics & Computer Organisation, Mathematics-II, Practical Lab-II"],
+        ["Semester III", "Object-Oriented Programming (C++), Operating Systems, Database Management Systems (DBMS), Practical Lab-III"],
+        ["Semester IV", "Java Programming, Computer Networks, Software Engineering, Web Design (HTML/CSS/JS), Practical Lab-IV"],
+        ["Semester V", "Python & Data Analytics / .NET Technologies, Cloud & Information Security Basics, Minor Project"],
+        ["Semester VI", "Major Software Development Project, Seminar & Viva Voce, Industry Readiness Workshop"],
+      ],
+    },
+    note: "University paper codes follow the active Dr. R.M.L. Avadh University / Maa Pateshwari University NEP syllabus published each academic session. Enrolled students can view their exact assigned paper codes inside the Student Portal.",
   },
   {
     slug: "bba",
@@ -70,13 +95,38 @@ export const COURSES: Course[] = [
     kind: "Under Graduate Course",
     title: "BBA",
     fullName: "Bachelor of Business Administration",
-    duration: "3 years (full-time)",
+    duration: "3 years (6 semesters, full-time)",
     eligibility: "Class 12 in any stream (admissions office confirms university norms each session)",
     awarding: "Dr. R.M.L. Avadh University, Faizabad (Ayodhya) / Maa Pateshwari University",
     intro: [
       "Bachelor of Business Administration (BBA) is a three-year full-time course designed to develop future professionals rather than mere “degree holders.” The program is designed to meet the evolving needs of the industry, where students ultimately seek employment and build successful careers. It follows a practical and industry-oriented approach to learning, combining theoretical knowledge with real-world applications.",
       "The BBA program at MSITM Degree College aims to produce skilled business executives, managers, and entrepreneurs with a strong foundation in management principles and practical expertise. The course equips students with the knowledge and skills required to take up challenging roles in the corporate sector and successfully establish their own ventures.",
     ],
+    sections: [
+      {
+        heading: "Student services & academic tracking",
+        body: [
+          "Enrolled BBA students access their semester fee ledger, printed receipts, attendance tracking, sessional marks, sick-leave gate passes, and exam admit cards through the MSITM Student Portal.",
+        ],
+        list: [
+          "Case-study seminars, management presentations, and Tally / business computing exposure",
+          "Summer training / industry visit guidance and soft-skills development",
+          "Dedicated placement & banking/corporate interview preparation",
+        ],
+      },
+    ],
+    table: {
+      head: ["Semester", "Core Management & Business Focus"],
+      rows: [
+        ["Semester I", "Principles of Management, Microeconomics, Business Mathematics, Business Communication"],
+        ["Semester II", "Organisational Behaviour, Financial Accounting, Macroeconomics, Computer Applications in Management"],
+        ["Semester III", "Marketing Management, Human Resource Management, Cost & Management Accounting, Business Statistics"],
+        ["Semester IV", "Financial Management, Business Law & Company Law, Operations Management, Research Methodology"],
+        ["Semester V", "Strategic Management, Entrepreneurship Development, Elective Specialisation (Finance / HR / Marketing), Summer Training Report"],
+        ["Semester VI", "International Business, Corporate Governance & Ethics, Major Project Report & Comprehensive Viva"],
+      ],
+    },
+    note: "University paper codes follow the active Dr. R.M.L. Avadh University / Maa Pateshwari University NEP syllabus published each academic session. Enrolled students can view their exact assigned paper codes inside the Student Portal.",
   },
   {
     slug: "mba",

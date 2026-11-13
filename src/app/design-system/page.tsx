@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Icons } from "@/components/icons";
 import { PageHero, SectionHeading } from "@/components/chrome";
-import { SITE_IMAGES } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Design System",
@@ -16,8 +15,6 @@ export default function DesignSystemPage() {
         title="MSITM Design System"
         description="Premium academic institution, modern editorial website. Restrained dark green, white and gold — strong photography, minimalist interface, excellent typography."
         trail={[{ label: "Home", href: "/" }, { label: "Design System" }]}
-        image={SITE_IMAGES.coursesDiploma}
-        imageAlt="MSITM digital design system and laboratory architecture"
         icon="Palette"
         badge="Visual System"
         subtitle="Tokens, Type & Components"

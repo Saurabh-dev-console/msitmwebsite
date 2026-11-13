@@ -96,8 +96,6 @@ export default async function CourseLevelPage({ params }: { params: Promise<{ le
         title={data.title}
         description={data.intro}
         trail={[{ label: "Home", href: "/" }, { label: "Courses", href: "/courses" }, { label: data.title }]}
-        image={lvlVis?.image}
-        imageAlt={lvlVis?.imageAlt}
         icon={lvlVis?.icon}
         badge={lvlVis?.badge}
         subtitle={lvlVis?.subtitle}
@@ -116,8 +114,6 @@ export default async function CourseLevelPage({ params }: { params: Promise<{ le
                     meta={`${c.kind}${c.duration ? ` · ${c.duration}` : ""}`}
                     href={`/courses/${level}/${c.slug}`}
                     icon={cVis?.icon}
-                    image={cVis?.image}
-                    imageAlt={cVis?.imageAlt}
                   />
                 );
               })}

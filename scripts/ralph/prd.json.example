@@ -1,0 +1,31 @@
+{
+  "branchName": "ralph/portal-improvements",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Add client-side pagination to admin student directory",
+      "acceptanceCriteria": [
+        "Pagination controls display 25 students per page",
+        "Typecheck passes: npm run typecheck",
+        "Lint passes: npm run lint",
+        "Verified in browser at 360/768/1280 px"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Add export button for student certificate logs",
+      "acceptanceCriteria": [
+        "Exports active filter view to CSV or Excel",
+        "Typecheck passes: npm run typecheck",
+        "Tests pass: npm test"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}
+

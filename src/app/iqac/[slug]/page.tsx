@@ -38,8 +38,6 @@ export default async function IqacSubPage({ params }: { params: Promise<{ slug: 
           { label: "IQAC", href: "/iqac" },
           { label: page.title },
         ]}
-        image={vis?.image}
-        imageAlt={vis?.imageAlt}
         icon={vis?.icon ?? "ShieldCheck"}
         badge={vis?.badge}
         subtitle={vis?.subtitle}

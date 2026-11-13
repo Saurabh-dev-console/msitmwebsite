@@ -38,12 +38,9 @@ export default async function NewsPostPage({ params }: { params: Promise<{ slug:
           { label: "College News", href: "/college-news-events/college-news" },
           { label: post.title.length > 40 ? `${post.title.slice(0, 40)}…` : post.title },
         ]}
-        image={vis?.image}
-        imageAlt={vis?.imageAlt}
         icon={vis?.icon ?? "Newspaper"}
         badge={vis?.badge}
         subtitle={vis?.subtitle}
-        objectPosition={vis?.objectPosition}
       />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
         <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1fr_300px]">

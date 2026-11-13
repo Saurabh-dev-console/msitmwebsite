@@ -70,18 +70,18 @@ export function Breadcrumbs({ trail }: { trail: { label: string; href?: string }
   );
 }
 
-/* ---------------- Contextual Hero Image Mapper ---------------- */
+/* ---------------- Contextual Hero Meta Mapper ---------------- */
 
 interface HeroContext {
-  src: string;
-  alt: string;
+  src?: string;
+  alt?: string;
   badge: string;
   subtitle: string;
   icon: IconName;
   objectPosition: "center" | "top";
 }
 
-function getContextualHeroImage(
+function getHeroMeta(
   trail: { label: string; href?: string }[],
   title: string,
   eyebrow: string
@@ -94,8 +94,6 @@ function getContextualHeroImage(
 
   if (text.includes("iqac") || text.includes("naac") || text.includes("rti") || text.includes("mou") || text.includes("aaa") || text.includes("perspective")) {
     return {
-      src: SITE_IMAGES.coursesPostgrad,
-      alt: "MSITM Internal Quality Assurance Cell and academic governance",
       badge: "IQAC · Quality Cell",
       subtitle: "NAAC Benchmarks & Standards",
       icon: "ShieldCheck",
@@ -104,8 +102,6 @@ function getContextualHeroImage(
   }
   if (text.includes("faculty") || text.includes("department") || text.includes("registration") || text.includes("staff")) {
     return {
-      src: SITE_IMAGES.classroomLecture,
-      alt: "MSITM faculty and academic instruction",
       badge: "Faculty & Mentors",
       subtitle: "Dedicated Academic Guidance",
       icon: "Users",
@@ -114,8 +110,6 @@ function getContextualHeroImage(
   }
   if (text.includes("postgraduate") || text.includes("mba") || text.includes("mca")) {
     return {
-      src: SITE_IMAGES.coursesPostgrad,
-      alt: "MSITM postgraduate MBA and MCA seminar",
       badge: "Postgraduate Study",
       subtitle: "MBA & MCA Programmes",
       icon: "Briefcase",
@@ -124,8 +118,6 @@ function getContextualHeroImage(
   }
   if (text.includes("diploma") || text.includes("nielit") || text.includes("caba") || text.includes("o-level") || text.includes("'o' level") || text.includes("'a' level")) {
     return {
-      src: SITE_IMAGES.coursesDiploma,
-      alt: "MSITM NIELIT and IT diploma laboratory",
       badge: "Accredited Diplomas",
       subtitle: "NIELIT · NCPUL · MSITM",
       icon: "Cpu",
@@ -134,8 +126,6 @@ function getContextualHeroImage(
   }
   if (text.includes("certificate") && !text.includes("independence") && !text.includes("bachpan")) {
     return {
-      src: SITE_IMAGES.coursesCertificate,
-      alt: "MSITM practical skill certificate workshop",
       badge: "Skill Certificates",
       subtitle: "Hands-On Short-Term Training",
       icon: "Award",
@@ -144,8 +134,6 @@ function getContextualHeroImage(
   }
   if (text.includes("course") || text.includes("academic") || text.includes("bca") || text.includes("bba")) {
     return {
-      src: SITE_IMAGES.coursesUndergrad,
-      alt: "MSITM students collaborating in academic classes",
       badge: "Academic Programmes",
       subtitle: "Practical Lab & Industry Training",
       icon: "GraduationCap",
@@ -154,8 +142,8 @@ function getContextualHeroImage(
   }
   if (text.includes("library")) {
     return {
-      src: SITE_IMAGES.libraryHero,
-      alt: "MSITM academic library shelves and quiet reading desks",
+      src: SITE_IMAGES.libraryAuthentic,
+      alt: "Students studying inside the MSITM library reading room",
       badge: "Academic Library",
       subtitle: "Books, Journals & Digital Access",
       icon: "BookOpen",
@@ -164,8 +152,6 @@ function getContextualHeroImage(
   }
   if (text.includes("computer lab") || text.includes("computing")) {
     return {
-      src: SITE_IMAGES.computerLab,
-      alt: "MSITM computer and IoT laboratory workstations",
       badge: "Computer & IoT Lab",
       subtitle: "250+ Modern Workstations",
       icon: "Monitor",
@@ -175,7 +161,7 @@ function getContextualHeroImage(
   if (text.includes("lecture hall")) {
     return {
       src: SITE_IMAGES.lectureHallAuthentic,
-      alt: "MSITM lecture hall with faculty and students",
+      alt: "Faculty addressing students inside an MSITM lecture hall",
       badge: "Lecture Halls",
       subtitle: "Projector-Equipped Classrooms",
       icon: "Presentation",
@@ -184,8 +170,8 @@ function getContextualHeroImage(
   }
   if (text.includes("facility") || text.includes("facilities") || text.includes("campus")) {
     return {
-      src: SITE_IMAGES.heroCampus,
-      alt: "MSITM green campus architecture and lawns in Gonda",
+      src: SITE_IMAGES.campusCourtyard,
+      alt: "MSITM students in the campus courtyard in Gonda",
       badge: "Campus Infrastructure",
       subtitle: "Wi-Fi Enabled Green Campus",
       icon: "Building2",
@@ -194,35 +180,39 @@ function getContextualHeroImage(
   }
   if (text.includes("admission") || text.includes("enrol") || text.includes("calender") || text.includes("process") || text.includes("form") || text.includes("contact")) {
     return {
-      src: SITE_IMAGES.admissionsCounselling,
-      alt: "MSITM admissions counselling and helpdesk",
       badge: "Admissions 2026–27",
       subtitle: "Counselling & Campus Guidance",
       icon: "ClipboardCheck",
       objectPosition: "center",
     };
   }
-  if (text.includes("alumni") || text.includes("success stories") || text.includes("equity") || text.includes("inclusion")) {
+  if (text.includes("alumni") || text.includes("success stories")) {
     return {
-      src: SITE_IMAGES.alumniSuccess,
-      alt: "MSITM alumni mentors and students on campus",
       badge: "Alumni & Community",
       subtitle: "Connected Since 1998",
       icon: "HeartHandshake",
       objectPosition: "center",
     };
   }
+  if (text.includes("equity") || text.includes("inclusion")) {
+    return {
+      src: SITE_IMAGES.campusCourtyard,
+      alt: "MSITM students together in the campus courtyard",
+      badge: "Inclusive Campus",
+      subtitle: "Access & Equal Opportunity",
+      icon: "HeartHandshake",
+      objectPosition: "center",
+    };
+  }
   if (text.includes("placement") || text.includes("career") || text.includes("recruiter")) {
     return {
-      src: SITE_IMAGES.placementCareers,
-      alt: "MSITM graduates in campus placement interview panel",
       badge: "Placement Excellence",
       subtitle: "Leading Recruiters & Careers",
       icon: "Briefcase",
       objectPosition: "center",
     };
   }
-  if (text.includes("ranking") || text.includes("accolade") || text.includes("independence") || text.includes("competition") || text.includes("bachpan")) {
+  if (text.includes("ranking") || text.includes("accolade")) {
     return {
       src: SITE_IMAGES.rankings,
       alt: "Convocation awards and student distinctions at MSITM",
@@ -232,40 +222,42 @@ function getContextualHeroImage(
       objectPosition: "top",
     };
   }
-  if (text.includes("farewell")) {
+  if (text.includes("farewell") || text.includes("extra-curricular")) {
     return {
-      src: SITE_IMAGES.fresherCelebration,
-      alt: "Student stage celebration and awards at MSITM",
       badge: "Campus Traditions",
       subtitle: "Celebrations & Cultural Life",
       icon: "PartyPopper",
+      objectPosition: "center",
+    };
+  }
+  if (text.includes("student")) {
+    return {
+      src: SITE_IMAGES.studentsStudy,
+      alt: "MSITM students collaborating on campus studies",
+      badge: "Student Community",
+      subtitle: "Workshops, Seminars & Growth",
+      icon: "Users",
       objectPosition: "top",
     };
   }
-  if (text.includes("news") || text.includes("event") || text.includes("celebrat") || text.includes("activity") || text.includes("student")) {
+  if (text.includes("independence") || text.includes("competition") || text.includes("bachpan") || text.includes("news") || text.includes("event") || text.includes("celebrat") || text.includes("activity")) {
     return {
-      src: SITE_IMAGES.eventsCultural,
-      alt: "MSITM seminars, tech fests and student cultural events",
       badge: "Campus Life & Events",
-      subtitle: "Seminars, Tech & Celebrations",
+      subtitle: "Seminars, Awards & Updates",
       icon: "Newspaper",
       objectPosition: "center",
     };
   }
   if (text.includes("leadership") || text.includes("president") || text.includes("founder")) {
     return {
-      src: SITE_IMAGES.founder,
-      alt: "Hazrat Mehboob Meena Shah, founder of MSITM",
       badge: "Institutional Heritage",
       subtitle: "Guiding Principles Since 1998",
       icon: "Landmark",
-      objectPosition: "top",
+      objectPosition: "center",
     };
   }
   if (text.includes("search") || text.includes("sitemap") || text.includes("mission") || text.includes("vision")) {
     return {
-      src: SITE_IMAGES.libraryHero,
-      alt: "MSITM knowledge resources and academic directory",
       badge: "MSITM Directory",
       subtitle: "Knowledge & Institutional Vision",
       icon: "Compass",
@@ -274,8 +266,6 @@ function getContextualHeroImage(
   }
   if (text.includes("audit") || text.includes("design") || text.includes("privacy")) {
     return {
-      src: SITE_IMAGES.computerLab,
-      alt: "MSITM digital architecture, standards and transparency",
       badge: "Standards & Governance",
       subtitle: "Verified Documentation",
       icon: "ShieldCheck",
@@ -284,8 +274,6 @@ function getContextualHeroImage(
   }
 
   return {
-    src: SITE_IMAGES.heroCampus,
-    alt: "Meena Shah Institute of Technology & Management Campus, Gonda",
     badge: "MSITM Campus",
     subtitle: "Gonda, Uttar Pradesh · Est. 1998",
     icon: "GraduationCap",
@@ -318,88 +306,96 @@ export function PageHero({
   subtitle?: string;
   objectPosition?: "center" | "top";
 }) {
-  const contextual = getContextualHeroImage(trail, title, eyebrow);
-  const heroImage = image || contextual.src;
-  const heroAlt = imageAlt || contextual.alt;
+  const contextual = getHeroMeta(trail, title, eyebrow);
+  const heroImage = image ?? contextual.src;
+  const heroAlt = imageAlt || contextual.alt || title;
   const badgeLabel = badge || contextual.badge;
   const subtitleLabel = subtitle || contextual.subtitle;
   const heroIcon = icon || contextual.icon;
-  const posClass = (objectPosition || contextual.objectPosition) === "top" ? "object-top" : "object-center";
+  const posClass = (objectPosition || contextual.objectPosition) === "top" ? "object-[50%_20%]" : "object-center";
 
   return (
     <header className="band-navy relative overflow-hidden">
-      {/* Photographic hero backdrop + dark-green brand scrim */}
-      <Image
-        src={heroImage}
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        aria-hidden="true"
-        className={`object-cover ${posClass} opacity-45 md:opacity-35 scale-[1.01] pointer-events-none`}
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-900/90 to-navy-950/75 pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-9 sm:py-12 md:py-16">
-        <div className="grid gap-8 md:gap-10 md:grid-cols-[1.35fr_1fr] md:items-center">
-          <div className="min-w-0">
-            <div className="[&_a]:!text-navy-100 [&_span[aria-current]]:!text-gold-300 [&_span]:!text-navy-100">
-              <Breadcrumbs trail={trail} />
-            </div>
-            <p className="eyebrow eyebrow--light mt-5 sm:mt-6 flex items-center gap-2">
-              <Icon name={heroIcon} className="h-3.5 w-3.5 text-gold-400 shrink-0" />
-              <span>{eyebrow}</span>
-            </p>
-            <h1 className="font-display mt-3 text-[1.75rem] min-[375px]:text-[2rem] sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-semibold leading-[1.08] text-white break-words">
-              {title}
-            </h1>
-            <div className="rule-gold mt-4 sm:mt-5" aria-hidden="true" />
-            {description ? (
-              <p className="mt-4 sm:mt-5 max-w-2xl text-navy-100 leading-relaxed font-normal text-[0.95rem] sm:text-base md:text-[1.05rem]">
-                {description}
-              </p>
-            ) : null}
-          </div>
-          <figure className="relative hidden md:block group min-w-0">
+      {heroImage ? (
+        <div className="relative md:min-h-[380px] lg:min-h-[430px] flex flex-col md:justify-end">
+          {/* Full-width edge-to-edge photograph: stacked full-bleed on mobile, full background on md+ */}
+          <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-950 md:aspect-auto md:absolute md:inset-0">
+            <Image
+              src={heroImage}
+              alt={heroAlt}
+              fill
+              priority
+              sizes="100vw"
+              className={`object-cover ${posClass}`}
+            />
             <div
-              className="absolute -inset-2 rounded-xl bg-gold-400/15 blur-[2px] transition-opacity duration-300 group-hover:bg-gold-400/25"
+              className="hidden md:block absolute inset-0 pointer-events-none bg-[linear-gradient(90deg,oklch(0.20_0.04_166/0.94)_0%,oklch(0.20_0.04_166/0.84)_48%,oklch(0.20_0.04_166/0.22)_100%)]"
               aria-hidden="true"
             />
-            <div className="relative rounded-xl overflow-hidden border border-gold-400/40 shadow-2xl bg-navy-950 ring-1 ring-white/10">
-              <Image
-                src={heroImage}
-                alt={heroAlt}
-                width={640}
-                height={400}
-                priority
-                className={`relative w-full h-64 lg:h-72 object-cover ${posClass} transition-transform duration-700 ease-out group-hover:scale-105`}
-                sizes="(max-width: 768px) 100vw, 460px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent pointer-events-none" />
+            <div
+              className="hidden md:block absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-navy-950/65 to-transparent"
+              aria-hidden="true"
+            />
+          </div>
 
-              {/* Top status badge */}
-              <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-navy-950/85 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold-400/35 text-[11px] font-semibold text-gold-300 shadow-md">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
-                MSITM Gonda
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-14">
+            <div className="max-w-2xl min-w-0 md:drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
+              <div className="[&_a]:!text-navy-100 [&_span[aria-current]]:!text-gold-300 [&_span]:!text-navy-100">
+                <Breadcrumbs trail={trail} />
               </div>
-
-              {/* Bottom info strip */}
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 text-xs text-navy-100 font-medium">
-                <span className="flex items-center gap-1.5 bg-navy-950/90 backdrop-blur-md px-2.5 py-1.5 rounded-md border border-white/10 text-white font-semibold truncate">
-                  <Icon name={heroIcon} className="w-3.5 h-3.5 text-gold-400 shrink-0" />
-                  <span className="truncate">{badgeLabel}</span>
+              <p className="eyebrow eyebrow--light mt-5 flex items-center gap-2">
+                <Icon name={heroIcon} className="h-3.5 w-3.5 text-gold-400 shrink-0" />
+                <span>{eyebrow}</span>
+              </p>
+              <h1 className="font-display mt-3 text-[1.75rem] min-[375px]:text-[2rem] sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-semibold leading-[1.08] text-white break-words">
+                {title}
+              </h1>
+              <div className="rule-gold mt-4 sm:mt-5" aria-hidden="true" />
+              {description ? (
+                <p className="mt-4 sm:mt-5 max-w-xl text-navy-100 leading-relaxed font-normal text-[0.95rem] sm:text-base md:text-[1.05rem]">
+                  {description}
+                </p>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="relative">
+          <div className="hero-graph-grid absolute inset-0 opacity-35 pointer-events-none" aria-hidden="true" />
+          <div
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(224,163,26,0.08),transparent_55%)] pointer-events-none"
+            aria-hidden="true"
+          />
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-9 sm:py-12 md:py-14">
+            <div className="max-w-4xl min-w-0">
+              <div className="[&_a]:!text-navy-100 [&_span[aria-current]]:!text-gold-300 [&_span]:!text-navy-100">
+                <Breadcrumbs trail={trail} />
+              </div>
+              <p className="eyebrow eyebrow--light mt-5 flex items-center gap-2">
+                <Icon name={heroIcon} className="h-3.5 w-3.5 text-gold-400 shrink-0" />
+                <span>{eyebrow}</span>
+              </p>
+              <h1 className="font-display mt-3 text-[1.75rem] min-[375px]:text-[2rem] sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-semibold leading-[1.08] text-white break-words">
+                {title}
+              </h1>
+              <div className="rule-gold mt-4 sm:mt-5" aria-hidden="true" />
+              {description ? (
+                <p className="mt-4 sm:mt-5 max-w-3xl text-navy-100 leading-relaxed font-normal text-[0.95rem] sm:text-base md:text-[1.05rem]">
+                  {description}
+                </p>
+              ) : null}
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-navy-100/90">
+                <span className="inline-flex items-center gap-2 font-semibold text-gold-300">
+                  <Icon name={heroIcon} className="h-4 w-4 text-gold-400 shrink-0" />
+                  <span>{badgeLabel}</span>
                 </span>
-                <span className="hidden lg:inline-block text-[11px] text-white/95 bg-navy-950/75 backdrop-blur-sm px-2.5 py-1 rounded-md border border-white/10 truncate shrink-0">
-                  {subtitleLabel}
-                </span>
+                <span aria-hidden="true" className="text-white/25">·</span>
+                <span>{subtitleLabel}</span>
               </div>
             </div>
-          </figure>
+          </div>
         </div>
-      </div>
+      )}
       <div className="relative h-1 bg-gold-400" aria-hidden="true" />
     </header>
   );

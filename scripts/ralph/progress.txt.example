@@ -1,0 +1,9 @@
+# Ralph Loop Progress & Learnings Log
+# Append-only. Used by subsequent iterations to retain context without bloat.
+
+[2026-11-13 US-001] Implemented client-side pagination in src/components/portal-admin-students.tsx.
+Learnings:
+- Preserved existing filters and search query parameters.
+- Reused Button variants and ChevronLeft/ChevronRight from lucide-react.
+- Typecheck and Lint exited 0.
+

@@ -1,62 +1,24 @@
-# Antigravity Engineering Environment & Agent Standards (v2)
+# Project Engineering Contract (v3)
 
-Welcome to the MSITM Website Audit & Rebuild Engineering Environment.
-All AI agents, engineers, and contributors must adhere to this document and the central engineering documentation in `docs/engineering/`.
+Commands: install=npm ci lint=npm run lint types=npm run typecheck test=npm test build=npm run build dev=npm run dev
+Architecture: see docs/engineering/ARCHITECTURE.md (UI -> domain -> data; deps point inward)
 
----
+## Non-Negotiables:
+- Evidence before "done": run the command, quote the real exit code and output. Never say "should work".
+- Reuse existing components/hooks/utilities; search code and graph (`codegraph` / `/codesearch`) first.
+- Smallest complete change; brevity never overrides validation, security, a11y, error handling or tests.
+- No new dependency, API/DB contract change, migration or deployment without explicit approval.
+- No secrets in code, docs, prompts, indexes or logs. Check third-party licenses for commercial safety.
+- UI work: follow docs/engineering/UI_STANDARDS.md and satisfy the design brief gate.
 
-## 1. Central Documentation (10 Core Files)
+## Persistent Rules:
+- UI Standards: `.agents/rules/ui-engineering.md` (glob: *.tsx, *.jsx, *.css)
+- Security: `.agents/rules/security.md` (model_decision)
+- Database: `.agents/rules/database.md` (model_decision)
+- Testing: `.agents/rules/testing.md` (glob: *.test.*, *.spec.*)
+- Ralph Loop: `.agents/rules/ralph.md` (manual)
 
-The documentation suite in `docs/engineering/` has been consolidated into 10 definitive files:
-
-```text
-docs/engineering/
-├── README.md                     # Master index & setup status
-├── ARCHITECTURE.md               # System architecture, stack, data flow
-├── ENGINEERING_RULES.md          # Master rules: Icons, Component Reuse, Dependency Policy
-├── UI_LIBRARY_GUIDE.md           # Skiper UI, Vengence UI registries & Animaster
-├── CODE_GRAPH_GUIDE.md           # GitNexus code knowledge graph protocol
-├── IMPLEMENTATION_WORKFLOW.md    # 6-step task chunking execution flow
-├── SKILL_REGISTRY.md             # Inventory of all agent skills and statuses
-├── DECISIONS.md                  # Architecture Decision Records (ADRs)
-├── ONYX_INTEGRATION.md           # Onyx enterprise platform evaluation & deferred guide
-└── TESTING_AND_VERIFICATION.md   # Typecheck, lint, build, & regression checks
-```
-
----
-
-## 2. Token-Efficient Skill Routing
-
-Never activate all skills simultaneously. Load only the specific skill matching task intent:
-
-| Task Intent | Skills to Load |
-| :--- | :--- |
-| **Reverse engineer authorized runtime/app behavior** | `reverse-engineering` / `reverse-engineer-anything` |
-| **Refactor, simplify, or implement code** | `ponytail` + relevant graph context |
-| **Create or redesign a UI surface** | `ui-ux-pro-max` and/or `hallmark`; `impeccable` for audit |
-| **Polish natural-language copy** | `humanizer` |
-| **Recent technology / community research** | `last30days` |
-| **Authorized website data extraction** | `scrapling-official` |
-| **Architecture / sequence / technical diagrams** | `diagram-design` |
-| **Search project knowledge base** | Onyx MCP (only if deployed & connected) |
-
----
-
-## 3. Strict Pre-Coding Protocol
-
-Before altering any code:
-1. Consult `docs/engineering/README.md`.
-2. Run graph impact check: `node .gitnexus/run.cjs impact <symbol> --direction upstream`.
-3. Check for existing reusable components in `src/components/` and `docs/engineering/ENGINEERING_RULES.md`.
-4. Decompose substantial tasks using `.agents/skills/task-chunking/SKILL.md`.
-
----
-
-## 4. Post-Coding Verification Checklist
-
-Every change must pass:
-1. `npm run typecheck` (zero TypeScript errors)
-2. `npm run lint` (zero ESLint errors)
-3. `npm run build` (Turbopack production build check)
-4. `node .gitnexus/run.cjs detect-changes --scope all` (graph regression detection)
-5. `git diff` review before commit.
+## Execution & Skills:
+- Code Intelligence: CodeGraph MCP (`npx @colbymchenry/codegraph`) or Antigravity `/codesearch`.
+- Backlog Automation: `scripts/ralph/ralph.sh` per `docs/engineering/RALPH_WORKFLOW.md`.
+- Skills Inventory: `docs/engineering/SKILL_REGISTRY.md` (maximum 2 skills loaded on match).

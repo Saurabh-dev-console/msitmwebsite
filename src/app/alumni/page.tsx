@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Icon, Icons, type IconName } from "@/components/icons";
 import { PageHero, SectionHeading } from "@/components/chrome";
 import { TestimonialCards } from "@/components/widgets";
-import { PLACED_STUDENTS, SITE_IMAGES } from "@/data/site";
+import { PLACED_STUDENTS } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Alumni",
@@ -36,8 +36,6 @@ export default function AlumniPage() {
         title="Alumni"
         description="Forever connected by our institution, our experience, and our love for MSITM."
         trail={[{ label: "Home", href: "/" }, { label: "Alumni" }]}
-        image={SITE_IMAGES.alumniSuccess}
-        imageAlt="MSITM alumni mentors conversing with students in the sunny campus courtyard"
         icon="Users"
         badge="Alumni Network"
         subtitle="50,000+ Enrolled Since 1998"

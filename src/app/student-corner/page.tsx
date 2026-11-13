@@ -40,11 +40,12 @@ export default function StudentCornerPage() {
           { label: "News & Events", href: "/college-news-events" },
           { label: "Student Corner" },
         ]}
-        image={SITE_IMAGES.eventsCultural}
-        imageAlt="MSITM students engaging in campus tech and cultural sessions"
+        image={SITE_IMAGES.studentsStudy}
+        imageAlt="MSITM students collaborating on campus studies"
         icon="Mic"
         badge="Student Community"
         subtitle="Workshops, Seminars & Feedback"
+        objectPosition="top"
       />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-16">
         <section className="grid md:grid-cols-3 gap-4">

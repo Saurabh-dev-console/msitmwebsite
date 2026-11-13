@@ -22,51 +22,85 @@ export default function FacilitiesIndex() {
         title="Facilities"
         description="Modern infrastructure — from a dedicated IoT lab and 250+ computer systems to a well-stocked library on a Wi-Fi-enabled campus."
         trail={[{ label: "Home", href: "/" }, { label: "Facilities" }]}
-        image={SITE_IMAGES.heroCampus}
-        imageAlt="MSITM green campus grounds and academic infrastructure"
+        image={SITE_IMAGES.campusCourtyard}
+        imageAlt="MSITM students in the campus courtyard and academic grounds"
         icon="Building2"
         badge="Campus Infrastructure"
         subtitle="Labs, Library & Lecture Halls"
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid md:grid-cols-2 gap-6">
-          {ORDER.map((slug) => {
-            const p = FACILITY_PAGES[slug];
-            const vis = FACILITY_VISUALS[slug];
-            return (
-              <Link key={slug} href={`/facilities/${slug}`} className="card-line group overflow-hidden flex flex-col">
-                {vis ? (
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy-950">
-                    <Image
-                      src={vis.image}
-                      alt={vis.imageAlt}
-                      fill
-                      loading="lazy"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className={`object-cover ${vis.objectPosition === "top" ? "object-top" : "object-center"} transition-transform duration-500 group-hover:scale-105`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent" aria-hidden="true" />
-                    <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-md bg-navy-950/90 border border-gold-400/35 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-gold-300">
-                      <Icon name={vis.icon} className="h-3.5 w-3.5 text-gold-400" />
-                      <span>{vis.badge}</span>
-                    </span>
-                  </div>
-                ) : null}
-                <div className="p-6 md:p-7 flex flex-col flex-1">
-                  <p className="eyebrow">{p.eyebrow}</p>
-                  <p className="font-display mt-2 text-2xl md:text-3xl font-semibold text-navy-900 group-hover:text-gold-700">
-                    {p.title}
-                  </p>
-                  <p className="mt-2 text-muted leading-relaxed flex-1">{p.description}</p>
-                  <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900">
-                    Explore
-                    <Icons.ArrowRight className="h-4 w-4 text-gold-600 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                  </p>
+      <div className="divide-y divide-line">
+        {ORDER.map((slug) => {
+          const p = FACILITY_PAGES[slug];
+          const vis = FACILITY_VISUALS[slug];
+          return (
+            <section key={slug} className="w-full">
+              {vis?.image ? (
+                <div className="relative w-full aspect-[16/9] lg:aspect-[21/8] max-h-[500px] overflow-hidden bg-navy-950">
+                  <Image
+                    src={vis.image}
+                    alt={vis.imageAlt ?? p.title}
+                    fill
+                    loading="lazy"
+                    sizes="100vw"
+                    className={`object-cover ${vis.objectPosition === "top" ? "object-[50%_20%]" : "object-center"}`}
+                  />
                 </div>
-              </Link>
-            );
-          })}
-        </div>
+              ) : (
+                <div className="w-full band-navy hero-graph-grid border-y border-gold-400/20 py-10 md:py-12">
+                  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold-300">
+                      <span>Computing Infrastructure</span>
+                      <span>250+ Workstations · Exam Ready</span>
+                    </div>
+                    <div className="mt-6 grid sm:grid-cols-3 gap-4">
+                      {[
+                        { icon: "Monitor" as const, label: "Practical Labs", detail: "Dedicated student workstations" },
+                        { icon: "Cpu" as const, label: "IoT Wing", detail: "Modern lab & embedded systems" },
+                        { icon: "Network" as const, label: "Campus Wi-Fi", detail: "In-house hardware support" },
+                      ].map((item) => (
+                        <div
+                          key={item.label}
+                          className="rounded-lg border border-white/15 bg-white/5 px-5 py-4 flex items-center gap-4"
+                        >
+                          <span className="h-10 w-10 rounded-lg bg-gold-400/15 border border-gold-400/35 flex items-center justify-center shrink-0">
+                            <Icon name={item.icon} className="h-5 w-5 text-gold-300" />
+                          </span>
+                          <div className="min-w-0">
+                            <p className="text-sm font-semibold text-white">{item.label}</p>
+                            <p className="text-xs text-navy-100/75 mt-0.5">{item.detail}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div className="bg-white">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                  <div className="max-w-3xl min-w-0">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <p className="eyebrow">{p.eyebrow}</p>
+                      {vis ? (
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-gold-700">
+                          <Icon name={vis.icon} className="h-3.5 w-3.5" />
+                          <span>{vis.badge}</span>
+                        </span>
+                      ) : null}
+                    </div>
+                    <h2 className="font-display mt-2 text-2xl sm:text-3xl font-semibold text-navy-900">
+                      {p.title}
+                    </h2>
+                    <p className="mt-2 text-muted leading-relaxed">{p.description}</p>
+                  </div>
+                  <Link href={`/facilities/${slug}`} className="btn btn-navy shrink-0 w-full sm:w-auto">
+                    Explore {p.title}
+                    <Icons.ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </section>
+          );
+        })}
       </div>
     </>
   );
