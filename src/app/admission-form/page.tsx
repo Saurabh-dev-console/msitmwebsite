@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Icons } from "@/components/icons";
 import { PageHero, SidebarCard } from "@/components/chrome";
 import { AdmissionForm } from "@/components/forms";
-import { SITE_IMAGES } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Admission Form",
@@ -22,8 +21,6 @@ export default function AdmissionFormPage() {
           { label: "Admissions", href: "/admission-process" },
           { label: "Admission Form" },
         ]}
-        image={SITE_IMAGES.admissionsCounselling}
-        imageAlt="MSITM admission counsellor guiding a student and family"
         icon="FileCheck2"
         badge="Admissions 2026–27"
         subtitle="Online Application Desk"

@@ -5,7 +5,7 @@ import { PageHero } from "@/components/chrome";
 import { COURSES, LEVELS, courseHref } from "@/data/courses";
 import { FACULTY_GROUPS } from "@/data/faculty";
 import { NEWS_POSTS } from "@/data/news";
-import { NAVIGATION, SITE_IMAGES } from "@/data/site";
+import { NAVIGATION } from "@/data/site";
 import { FACILITY_PAGES, IQAC_PAGES, PLACEMENT_PAGES } from "@/data/content";
 
 export const metadata: Metadata = {
@@ -21,8 +21,6 @@ export default function SitemapPage() {
         title="Sitemap"
         description="The complete structure of this website — every section, course, and record."
         trail={[{ label: "Home", href: "/" }, { label: "Sitemap" }]}
-        image={SITE_IMAGES.heroCampus}
-        imageAlt="MSITM campus overview and full site index"
         icon="Compass"
         badge="Site Index"
         subtitle="All Routes & Programmes"

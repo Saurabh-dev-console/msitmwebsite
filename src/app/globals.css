@@ -82,7 +82,8 @@
 :root {
   /* Kampasy Brand: Deep school green, warm paper neutrals, amber highlight */
   --background: oklch(0.968 0.005 106);
-  --foreground: oklch(0.18 0.035 165); /* Rich dark chalkboard ink (15:1 contrast) */
+  --foreground: oklch(0.18 0.035 165);
+  /* Rich dark chalkboard ink (15:1 contrast) */
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.035 165);
@@ -97,7 +98,8 @@
   --secondary-foreground: oklch(0.26 0.055 163);
 
   --muted: oklch(0.94 0.008 120);
-  --muted-foreground: oklch(0.32 0.02 165); /* High-contrast readable slate ink (9.5:1 contrast) */
+  --muted-foreground: oklch(0.32 0.02 165);
+  /* High-contrast readable slate ink (9.5:1 contrast) */
 
   --accent: oklch(0.935 0.014 160);
   --accent-foreground: oklch(0.26 0.055 163);
@@ -202,6 +204,7 @@
     border-color: var(--border);
     outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
   }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
@@ -209,11 +212,18 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+
   html {
     font-family: var(--font-sans);
     scroll-behavior: smooth;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 700;
   }
 }
@@ -277,7 +287,8 @@ html:lang(hi) {
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.25;
-  min-height: 2.5rem; /* 40px default */
+  min-height: 2.5rem;
+  /* 40px default */
   padding: 0.5rem 1rem;
   border-radius: var(--radius-lg);
   border: 1px solid transparent;
@@ -347,23 +358,27 @@ html:lang(hi) {
 }
 
 .btn-sm {
-  min-height: 2rem; /* 32px sm on desktop */
+  min-height: 2rem;
+  /* 32px sm on desktop */
   padding: 0.25rem 0.75rem;
   font-size: 0.8rem;
   border-radius: var(--radius-md);
 }
 
 .btn-lg {
-  min-height: 2.75rem; /* 44px lg */
+  min-height: 2.75rem;
+  /* 44px lg */
   padding: 0.5rem 1.25rem;
   font-size: 1rem;
   border-radius: var(--radius-xl);
 }
 
 @media (max-width: 1023px) {
+
   .btn,
   .btn-sm {
-    min-height: 2.75rem; /* 44px touch target across phones & tablets */
+    min-height: 2.75rem;
+    /* 44px touch target across phones & tablets */
   }
 }
 
@@ -445,7 +460,8 @@ html:lang(hi) {
 .field-select,
 .field-textarea {
   width: 100%;
-  min-height: 2.5rem; /* 40px default */
+  min-height: 2.5rem;
+  /* 40px default */
   border: 1px solid var(--input);
   background: var(--card);
   padding: 0.5rem 0.75rem;
@@ -457,6 +473,7 @@ html:lang(hi) {
 }
 
 @media (max-width: 1023px) {
+
   .field-input,
   .field-select {
     min-height: 2.75rem;
@@ -464,10 +481,12 @@ html:lang(hi) {
 }
 
 @media (max-width: 639px) {
+
   .field-input,
   .field-select,
   .field-textarea {
-    font-size: 1rem; /* Prevents iOS Safari auto-zoom on focus */
+    font-size: 1rem;
+    /* Prevents iOS Safari auto-zoom on focus */
   }
 
   .table-msitm {
@@ -503,6 +522,7 @@ html:lang(hi) {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -518,10 +538,31 @@ html:lang(hi) {
   animation-play-state: paused;
 }
 
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-progress-bar {
+  transform-origin: left center;
+  animation: hero-progress 5s linear forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none;
   }
+
+  .hero-progress-bar {
+    animation: none;
+    transform: scaleX(1);
+  }
+
   html {
     scroll-behavior: auto;
   }

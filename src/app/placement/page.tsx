@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Icon, Icons, type IconName } from "@/components/icons";
 import { PageHero, SectionHeading } from "@/components/chrome";
 import { PlacedGrid, RecruiterMarquee } from "@/components/widgets";
-import { PLACED_STUDENTS, SITE_IMAGES } from "@/data/site";
+import { PLACED_STUDENTS } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Placements",
@@ -40,8 +40,6 @@ export default function PlacementIndex() {
         title="Placements"
         description="At MSITM, placement is not an event — it is an ongoing process of training, guidance and industry connection."
         trail={[{ label: "Home", href: "/" }, { label: "Placements" }]}
-        image={SITE_IMAGES.placementCareers}
-        imageAlt="Graduating MSITM students in a campus placement interview"
         icon="Briefcase"
         badge="Campus Placements"
         subtitle="Corporate Drives & Training"

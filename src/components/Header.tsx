@@ -70,6 +70,13 @@ export default function Header() {
               {CONTACT.email}
             </a>
             <Link
+              href="/portal"
+              className="inline-flex items-center gap-1 min-h-[44px] lg:min-h-0 -my-1.5 lg:my-0 text-gold-300 hover:text-white font-semibold whitespace-nowrap"
+            >
+              <Icons.KeyRound className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              <span>Student Portal</span>
+            </Link>
+            <Link
               href="/admission-form"
               className="hidden sm:inline-flex items-center min-h-[44px] lg:min-h-0 -my-1.5 lg:my-0"
             >
@@ -231,6 +238,14 @@ export default function Header() {
                 {CONTACT.email}
               </a>
               <Link
+                href="/portal"
+                onClick={() => setExploreOpen(false)}
+                className="text-gold-300 hover:text-white font-semibold inline-flex items-center gap-1.5 min-h-[44px] lg:min-h-0"
+              >
+                <Icons.KeyRound className="h-4 w-4 shrink-0" aria-hidden="true" />
+                UG Student &amp; ERP Portal
+              </Link>
+              <Link
                 href="/search"
                 onClick={() => setExploreOpen(false)}
                 className="text-navy-100 hover:text-gold-300 inline-flex items-center gap-1.5 min-h-[44px] lg:min-h-0"
@@ -334,6 +349,10 @@ export default function Header() {
               <a href={CONTACT.emailHref} className="flex w-fit items-center min-h-[44px] -my-1 text-navy-100 break-all">
                 {CONTACT.email}
               </a>
+              <Link href="/portal" onClick={() => setMobileOpen(false)} className="btn btn-outline btn-sm mt-2 w-full">
+                <Icons.KeyRound className="h-3.5 w-3.5" aria-hidden="true" />
+                Student &amp; Staff Portal
+              </Link>
               <Link href="/admission-form" onClick={() => setMobileOpen(false)} className="btn btn-gold btn-sm mt-2 w-full">
                 Apply for 2026–27
               </Link>

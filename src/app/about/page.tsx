@@ -57,33 +57,29 @@ const DISTINCTIONS: { title: string; text: string; icon: IconName }[] = [
   },
 ];
 
-const INFRA_CARDS: { title: string; text: string; href: string; image: string; icon: IconName }[] = [
+const INFRA_CARDS: { title: string; text: string; href: string; icon: IconName }[] = [
   {
     title: "Library",
     text: "A comprehensive collection of books to support academic growth.",
     href: "/facilities/library",
-    image: SITE_IMAGES.libraryAuthentic,
     icon: "BookOpen",
   },
   {
     title: "Computer labs",
     text: "250+ modern computers to explore cutting-edge technology.",
     href: "/facilities/computer-lab",
-    image: SITE_IMAGES.computerLab,
     icon: "Monitor",
   },
   {
     title: "Online teaching",
     text: "Uninterrupted education through robust virtual platforms.",
     href: "/facilities",
-    image: SITE_IMAGES.coursesDiploma,
     icon: "Laptop",
   },
   {
     title: "Classrooms",
     text: "Spacious, collaborative spaces for theory and practice.",
     href: "/facilities/lecture-hall",
-    image: SITE_IMAGES.lectureHallAuthentic,
     icon: "Presentation",
   },
 ];
@@ -156,44 +152,18 @@ export default function AboutPage() {
               <SectionHeading eyebrow="Infrastructure" title="Infrastructure & facilities" text="A learning environment supported by modern infrastructure." />
               <div className="mt-6 grid sm:grid-cols-2 gap-4">
                 {INFRA_CARDS.map((card) => (
-                  <Link key={card.title} href={card.href} className="card-line group overflow-hidden flex flex-col">
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy-950">
-                      <Image
-                        src={card.image}
-                        alt={`${card.title} at MSITM`}
-                        fill
-                        loading="lazy"
-                        sizes="(max-width: 640px) 100vw, 50vw"
-                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" aria-hidden="true" />
-                      <span className="absolute bottom-2.5 left-3 inline-flex items-center gap-1.5 rounded-md bg-navy-950/90 border border-gold-400/35 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-gold-300">
-                        <Icon name={card.icon} className="h-3.5 w-3.5 text-gold-400" />
-                        <span>{card.title}</span>
-                      </span>
-                    </div>
-                    <div className="p-5 flex-1">
+                  <Link key={card.title} href={card.href} className="card-line group p-5 flex items-start gap-3.5 min-w-0">
+                    <span className="h-10 w-10 rounded-lg bg-navy-50 border border-navy-100 text-gold-700 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-navy-900 group-hover:text-gold-300 transition-colors">
+                      <Icon name={card.icon} className="h-5 w-5" />
+                    </span>
+                    <div className="min-w-0">
                       <p className="font-display text-lg font-semibold text-navy-900 group-hover:text-gold-700">{card.title}</p>
-                      <p className="mt-1.5 text-sm text-muted leading-relaxed">{card.text}</p>
+                      <p className="mt-1 text-sm text-muted leading-relaxed">{card.text}</p>
                     </div>
                   </Link>
                 ))}
               </div>
             </section>
-
-            <figure>
-              <div className="rounded-xl overflow-hidden border border-line shadow-xs">
-                <Image
-                  src={SITE_IMAGES.campusTour}
-                  alt="Faculty and students on an academic tour at MSITM"
-                  width={1200}
-                  height={640}
-                  className="w-full h-auto object-cover"
-                  sizes="(max-width: 1024px) 100vw, 720px"
-                />
-              </div>
-              <figcaption className="mt-2 text-sm text-muted italic">Life at MSITM, Gonda (photograph from msitm.edu.in).</figcaption>
-            </figure>
           </div>
           <aside className="space-y-6 self-start min-w-0">
             <SidebarCard title="In this section">
@@ -209,6 +179,23 @@ export default function AboutPage() {
           </aside>
         </div>
       </div>
+
+      <figure className="w-full border-t hairline">
+        <div className="relative w-full aspect-[16/9] lg:aspect-[21/9] max-h-[560px] overflow-hidden bg-navy-950">
+          <Image
+            src={SITE_IMAGES.lectureHallAuthentic}
+            alt="Students attending an academic session inside the MSITM lecture hall, Gonda"
+            fill
+            className="object-cover object-[50%_25%]"
+            sizes="100vw"
+          />
+        </div>
+        <figcaption className="bg-parchment border-b hairline px-4 sm:px-6 lg:px-8 py-3">
+          <p className="mx-auto max-w-7xl text-xs sm:text-sm text-muted italic">
+            Campus academic life at MSITM Degree College, Meena Nagar, Circular Road, Gonda (photographs from msitm.edu.in).
+          </p>
+        </figcaption>
+      </figure>
     </>
   );
 }

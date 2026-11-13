@@ -49,8 +49,8 @@ export default function MsitmCertificatePage() {
         title="Independence Day — Claim Your Certificate"
         description="Verification desk for participants of the MSITM Degree College Mega District Level Competition."
         trail={[{ label: "Home", href: "/" }, { label: "Certificate Desk" }]}
-        image={SITE_IMAGES.rankings}
-        imageAlt="MSITM award and certificate recognition ceremony"
+        image={SITE_IMAGES.fresherCelebration}
+        imageAlt="MSITM students receiving competition awards on stage"
         icon="Trophy"
         badge="District Competition"
         subtitle="Certificate Verification Desk"

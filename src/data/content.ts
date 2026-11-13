@@ -31,8 +31,8 @@ export const ABOUT_PAGES: Record<string, PageContent> = {
     eyebrow: "About · Distinction",
     description:
       "The reasons students across Gonda and the Devipatan region choose the Meena Shah Institute of Technology and Management.",
-    image: SITE_IMAGES.coursesUndergrad,
-    imageAlt: "Students collaborating in a seminar hall at MSITM",
+    image: SITE_IMAGES.studentsStudy,
+    imageAlt: "Students collaborating on campus studies at MSITM",
     blocks: [
       {
         type: "lead",
@@ -111,8 +111,6 @@ export const ABOUT_PAGES: Record<string, PageContent> = {
     title: "Mission & Vision",
     eyebrow: "About · Purpose",
     description: "The vision and mission that guide every classroom, laboratory and mentoring relationship at MSITM.",
-    image: SITE_IMAGES.libraryHero,
-    imageAlt: "Students reading and researching in the MSITM academic library",
     blocks: [
       { type: "heading", text: "Vision of MSITM" },
       {
@@ -142,8 +140,8 @@ export const ABOUT_PAGES: Record<string, PageContent> = {
     title: "Our Evergreen Campus",
     eyebrow: "About · Campus",
     description: "Classic, timeless, lush, modern, evergreen — the MSITM campus in Gonda.",
-    image: SITE_IMAGES.heroCampus,
-    imageAlt: "Meena Shah Institute of Technology and Management campus and green grounds",
+    image: SITE_IMAGES.campusCourtyard,
+    imageAlt: "Students in the MSITM Gonda campus courtyard",
     blocks: [
       { type: "lead", text: "Classic. Timeless. Lush. Modern. Evergreen." },
       {
@@ -159,12 +157,6 @@ export const ABOUT_PAGES: Record<string, PageContent> = {
         paragraphs: [
           "MSITM is affiliated to Dr. Ram Manohar Lohia Avadh University, Faizabad, which offers BBA & BCA. MSITM is also an authorized learning center of Integral University, which offers master's programs like MBA and MCA. MSITM is also an authorized center of NIELIT & NCPUL (autonomous bodies in IT and communication).",
         ],
-      },
-      {
-        type: "image",
-        src: SITE_IMAGES.campusCourtyard,
-        alt: "MSITM students in courtyard",
-        caption: "Students in the MSITM Gonda courtyard (photograph from msitm.edu.in).",
       },
       {
         type: "linkCards",
@@ -326,8 +318,8 @@ export const ABOUT_PAGES: Record<string, PageContent> = {
     title: "Equity and Inclusion",
     eyebrow: "About · Values",
     description: "MSITM's commitment to access, rural upliftment and an inclusive campus.",
-    image: SITE_IMAGES.alumniSuccess,
-    imageAlt: "Inclusive community of MSITM students and mentors outdoors",
+    image: SITE_IMAGES.campusCourtyard,
+    imageAlt: "Students across all streams in the MSITM campus courtyard",
     blocks: [
       { type: "heading", text: "Message from the Office of Equity and Inclusion" },
       {
@@ -370,8 +362,8 @@ export const FACILITY_PAGES: Record<string, PageContent> = {
     title: "Campus",
     eyebrow: "Facilities · Campus",
     description: "Welcome to the MSITM campus — the torchbearer of IT & Management education in Gonda and Devipatan.",
-    image: SITE_IMAGES.heroCampus,
-    imageAlt: "MSITM campus building and green walkways",
+    image: SITE_IMAGES.campusCourtyard,
+    imageAlt: "MSITM students in the campus courtyard in Gonda",
     blocks: [
       { type: "heading", text: "Welcome to the MSITM campus" },
       {
@@ -382,12 +374,6 @@ export const FACILITY_PAGES: Record<string, PageContent> = {
           "MSITM is affiliated to Dr. Ram Manohar Lohia Avadh University, Faizabad, which offers BBA & BCA. MSITM is also an authorized learning center of Integral University, which offers master's programs like MBA and MCA, and an authorized center of NIELIT & NCPUL.",
           "MSITM, Gonda now stands out and stands taller than the rest in the region as a unique group. Its beyond-the-syllabus curriculum approach, innovative teaching, training and concept-building methodology, and holistic integrated action plan for the overall development of students and faculty provide the inspiring force for excellent growth.",
         ],
-      },
-      {
-        type: "image",
-        src: SITE_IMAGES.campusCourtyard,
-        alt: "MSITM students in uniform blazers on the campus courtyard",
-        caption: "MSITM students between lectures in the Gonda campus courtyard (photograph from msitm.edu.in).",
       },
       {
         type: "linkCards",
@@ -403,8 +389,8 @@ export const FACILITY_PAGES: Record<string, PageContent> = {
     title: "Library",
     eyebrow: "Facilities · Library",
     description: "A rich, well-stocked library — the academic heart of MSITM since 1998.",
-    image: SITE_IMAGES.libraryHero,
-    imageAlt: "MSITM academic library study hall and shelves",
+    image: SITE_IMAGES.libraryAuthentic,
+    imageAlt: "Students collaborating inside the MSITM library reading room",
     blocks: [
       { type: "lead", text: "Since 1998, we have prided ourselves on excellence." },
       {
@@ -413,12 +399,6 @@ export const FACILITY_PAGES: Record<string, PageContent> = {
           "A rich and well-stocked library with thousands of books in stock — making the path easier to richness in knowledge.",
           "The College Library is the academic heart of our institution, supporting students, faculty, and staff in their pursuit of knowledge and excellence. We offer a rich collection of physical and digital resources, including books and study materials across all disciplines.",
         ],
-      },
-      {
-        type: "image",
-        src: SITE_IMAGES.libraryAuthentic,
-        alt: "MSITM students studying at group tables inside the college library",
-        caption: "Students collaborating inside the MSITM library reading room (photograph from msitm.edu.in).",
       },
       { type: "heading", text: "Our library provides" },
       {
@@ -443,8 +423,6 @@ export const FACILITY_PAGES: Record<string, PageContent> = {
     title: "Computer Lab",
     eyebrow: "Facilities · Computing",
     description: "A well-structured computer lab with 250 advanced systems and internet connectivity.",
-    image: SITE_IMAGES.computerLab,
-    imageAlt: "MSITM computer and IoT laboratory workstations",
     blocks: [
       { type: "lead", text: "A well-structured computer lab with 250 advanced computer systems and internet connection." },
       {
@@ -452,12 +430,6 @@ export const FACILITY_PAGES: Record<string, PageContent> = {
         paragraphs: [
           "Our computer laboratories make our students' path easier to learn new things with the help of advanced technologies — from programming practice and database work to IoT experiments and online examinations.",
         ],
-      },
-      {
-        type: "image",
-        src: SITE_IMAGES.coursesDiploma,
-        alt: "Advanced IT and DTP workstation hall at MSITM",
-        caption: "Practical programming, web design and NIELIT training workstations.",
       },
       {
         type: "facts",
@@ -492,12 +464,6 @@ export const FACILITY_PAGES: Record<string, PageContent> = {
         ],
       },
       {
-        type: "image",
-        src: SITE_IMAGES.classroomLecture,
-        alt: "MSITM students attending a lecture inside the classroom",
-        caption: "Students attending a formal lecture at MSITM, Gonda (photograph from msitm.edu.in).",
-      },
-      {
         type: "linkCards",
         items: [
           { title: "Campus", text: "Explore the wider campus.", href: "/facilities/campus" },
@@ -513,8 +479,6 @@ export const PLACEMENT_PAGES: Record<string, PageContent> = {
     title: "About Placement Cell",
     eyebrow: "Placements · Placement cell",
     description: "How MSITM's Training & Placement Cell guides students from classroom to career.",
-    image: SITE_IMAGES.placementCareers,
-    imageAlt: "Graduating MSITM students during an on-campus corporate placement interview",
     blocks: [
       {
         type: "prose",
@@ -561,8 +525,6 @@ export const PLACEMENT_PAGES: Record<string, PageContent> = {
     title: "Training & Placement",
     eyebrow: "Placements · Programme",
     description: "Training and placement at MSITM — an ongoing process, not an event.",
-    image: SITE_IMAGES.alumniSuccess,
-    imageAlt: "MSITM alumni mentors guiding students on career readiness",
     blocks: [
       {
         type: "prose",
@@ -619,8 +581,8 @@ export const NEWS_INDEX_EXTRA: Record<string, PageContent> = {
     title: "Extra-Curricular Activities",
     eyebrow: "News & Events · Beyond class",
     description: "Competitions, celebrations, seminars and skill-building beyond the classroom at MSITM.",
-    image: SITE_IMAGES.eventsCultural,
-    imageAlt: "Students celebrating at an MSITM auditorium event",
+    image: SITE_IMAGES.fresherCelebration,
+    imageAlt: "MSITM students receiving recognition awards on stage",
     blocks: [
       {
         type: "lead",
@@ -775,8 +737,6 @@ export const MISC_PAGES: Record<string, PageContent> = {
     title: "Admission Process",
     eyebrow: "Admissions · How to apply",
     description: "How to apply to MSITM for the 2026–27 academic session.",
-    image: SITE_IMAGES.admissionsCounselling,
-    imageAlt: "MSITM admission counsellor guiding a prospective student and parent",
     blocks: [
       {
         type: "lead",
@@ -822,8 +782,6 @@ export const MISC_PAGES: Record<string, PageContent> = {
     title: "Admission Calendar",
     eyebrow: "Admissions · 2026–27",
     description: "Admission calendar for the 2026–27 academic session at MSITM.",
-    image: SITE_IMAGES.heroCampus,
-    imageAlt: "MSITM campus welcoming new admission applicants",
     blocks: [
       {
         type: "lead",
@@ -859,8 +817,6 @@ export const MISC_PAGES: Record<string, PageContent> = {
     title: "Training & Placement",
     eyebrow: "Placements · Overview",
     description: "Training and placement at MSITM — guidance, recruiters and outcomes.",
-    image: SITE_IMAGES.placementCareers,
-    imageAlt: "MSITM students in corporate training and interview preparation",
     blocks: [
       {
         type: "lead",
@@ -886,8 +842,6 @@ export const MISC_PAGES: Record<string, PageContent> = {
     title: "Privacy Policy",
     eyebrow: "Legal · Privacy",
     description: "How MSITM collects, uses and protects information submitted through this website.",
-    image: SITE_IMAGES.libraryHero,
-    imageAlt: "Institutional records and academic archive at MSITM",
     blocks: [
       {
         type: "lead",

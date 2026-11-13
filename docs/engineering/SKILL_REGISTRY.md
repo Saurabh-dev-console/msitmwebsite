@@ -1,53 +1,46 @@
-# Antigravity Skills Registry
+# Agent Skill & Repository Registry (v3.0)
 
-This document records the official sources, installation mechanisms, security assessments, and verification statuses for all skills configured in this workspace.
-
----
-
-## 1. Primary Engineering Skills
-
-| Skill Name | Repository / Source | License | Classification | Status | Verified Function |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **ponytail** | `github.com/DietrichGebert/ponytail` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Minimal-code engineering, prevents overengineering and bloat |
-| **task-chunking** | Local Workflow / Master Spec | MIT | Agent Skill | **CONFIGURED AND VERIFIED** | 6-stage sequential task decomposition with verification gates |
-| **reverse-engineering** | `github.com/morluto/rea` (adapted) | MIT | Agent Skill | **CONFIGURED AND VERIFIED** | Clean-room UI & interaction reconstruction protocol |
-| **reverse-engineer-anything** | `github.com/morluto/rea` | MIT | Agent Skill / REA | **INSTALLED AND VERIFIED** | Runtime/binary inspection, bundle analysis |
-| **code-graph** | GitNexus Code Intelligence | MIT | Graph / CLI / MCP | **CONFIGURED AND VERIFIED** | AST symbol context, call paths, blast radius impact analysis |
+**Specification**: Antigravity Engineering Environment v3.0  
+**Status Standard**: `INSTALLED AND VERIFIED`, `CONFIGURED AND VERIFIED`, `BLOCKED`, `PENDING USER INPUT`, `DEFERRED`.
 
 ---
 
-## 2. Complementary Frontend & Design Skills
+## 1. Verified Inventory Register
 
-| Skill Name | Repository / Source | License | Classification | Status | Verified Function |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **ui-ux-pro-max** | `github.com/nextlevelbuilder/ui-ux-pro-max-skill` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Design systems, WCAG accessibility, color and typography profiles |
-| **hallmark** | `github.com/Nutlope/hallmark` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Bespoke web design & page layout generation |
-| **impeccable** | `github.com/pbakaus/impeccable` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Frontend UI critique, UX hardening, layout polish |
-| **humanizer** | `github.com/hannsxpeter/humanizer` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Natural language copywriting, de-slopping AI text |
-| **diagram-design** | `github.com/cathrynlavery/diagram-design` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Technical architecture, ER, sequence, and system diagrams |
-| **last30days** | `github.com/mvanhorn/last30days-skill` | MIT | Agent Skill | **INSTALLED AND VERIFIED** | Recent web, GitHub, and community technical research |
-| **scrapling-official** | `github.com/D4Vinci/Scrapling` | BSD-3-Clause | Agent Skill | **INSTALLED AND VERIFIED** | Web page extraction, HTTP requests, stealth browser scraping |
-
----
-
-## 3. GitNexus Code Intelligence Skills
-
-| Skill Name | Source | Classification | Status | Purpose |
-| :--- | :--- | :--- | :--- | :--- |
-| **gitnexus-cli** | GitNexus Embedded | Agent Skill | **INSTALLED AND VERIFIED** | CLI indexing, status, and graph wiki commands |
-| **gitnexus-impact-analysis** | GitNexus Embedded | Agent Skill | **INSTALLED AND VERIFIED** | Blast radius calculations before file edits |
-| **gitnexus-debugging** | GitNexus Embedded | Agent Skill | **INSTALLED AND VERIFIED** | Bug tracing and error origin traversal |
-| **gitnexus-exploring** | GitNexus Embedded | Agent Skill | **INSTALLED AND VERIFIED** | Architecture and execution flow exploration |
-| **gitnexus-refactoring** | GitNexus Embedded | Agent Skill | **INSTALLED AND VERIFIED** | Call-graph safe symbol renaming and extractions |
-| **gitnexus-guide** | GitNexus Embedded | Agent Skill | **INSTALLED AND VERIFIED** | Tool schemas, MCP protocol, and query references |
+| # | Item | Upstream Source | Class | Licence | Status | Evidence / Verification Method |
+| :- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **REA** | `morluto/rea` | MCP + CLI + Skill | MIT | `INSTALLED AND VERIFIED` | `.agents/skills/reverse-engineer-anything/SKILL.md` present; registered in `skills-lock.json`. |
+| 2 | **Ponytail** | `DietrichGebert/ponytail` | Skill + Ruleset | MIT | `INSTALLED AND VERIFIED` | `.agents/skills/ponytail/SKILL.md` present; brevity and simplicity guidelines active. |
+| 3 | **Hallmark** | `Nutlope/hallmark` | Anti-slop Design Skill | MIT | `INSTALLED AND VERIFIED` | `.agents/skills/hallmark/SKILL.md` present; registered in `skills-lock.json`. |
+| 4 | **Impeccable** | `pbakaus/impeccable` | Skill + CLI Detector | Apache-2.0 | `INSTALLED AND VERIFIED` | `.agents/skills/impeccable/SKILL.md` present; detector runnable via `npx impeccable`. |
+| 5 | **UI UX Pro Max** | `nextlevelbuilder/ui-ux-pro-max-skill` | Design Data + Python CLI | MIT | `INSTALLED AND VERIFIED` | `.agents/skills/ui-ux-pro-max/SKILL.md` + data CSVs present. (Python runtime required for CLI scripts). |
+| 6 | **Humanizer** | `hannsxpeter/humanizer` | Pure-Prompt Skill | MIT / Unconfirmed | `INSTALLED AND VERIFIED` | `.agents/skills/humanizer/SKILL.md` present; prompt patterns available. |
+| 7 | **Last30Days** | `mvanhorn/last30days-skill` | Skill + Python Scripts | MIT | `INSTALLED AND VERIFIED` | `.agents/skills/last30days/SKILL.md` present. (Python 3.12+ required for social script execution). |
+| 8 | **Scrapling** | `D4Vinci/Scrapling` | Library + CLI + MCP + Skill | BSD-3-Clause | `INSTALLED AND VERIFIED` | `.agents/skills/scrapling-official/SKILL.md` present; authorised scraping targets only. |
+| 9 | **Diagram Design** | `cathrynlavery/diagram-design` | HTML/SVG Design Skill | MIT | `INSTALLED AND VERIFIED` | `.agents/skills/diagram-design/SKILL.md` present; registered in `skills-lock.json`. |
+| 10 | **Ralph Loop** | `snarktank/ralph` | Autonomous Loop + Adapter | MIT | `CONFIGURED AND VERIFIED` | `scripts/ralph/ralph.sh`, `AGY.md`, `prd.json.example`, `progress.txt.example` configured. |
+| 11 | **CodeGraph** | `colbymchenry/codegraph` | Local SQLite MCP Graph | MIT / Apache-2.0 | `INSTALLED AND VERIFIED` | Primary graph engine: `npx @colbymchenry/codegraph init -y` indexed 284 files (8,865 nodes, 24,219 edges). |
+| 12 | **GitNexus** | `abhigyanpatwari` | Local MCP Code Graph | PolyForm Noncommercial | `BLOCKED FOR COMMERCIAL USE` | Blocked by non-commercial license clause. Retained only as non-commercial fallback. |
+| 13 | **Onyx** | `onyx-dot-app/onyx` | Enterprise Platform | MIT CE / EE Proprietary | `DEFERRED` | Standalone platform deployment; deferred until dedicated infra approval. |
+| 14 | **Skiper UI** | `skiper-ui.com` | shadcn Component Registry | Free w/ attrib / Pro | `CONFIGURED (ON-DEMAND)` | Installed component-by-component via `npx shadcn add @skiper-ui/<component>`. |
+| 15 | **Vengence UI** | `vengenceui.com` | Radix/Tailwind Components | Not confirmed | `TO VERIFY AT INSTALL` | On-demand component install; license and exact package to be confirmed upon use. |
+| 16 | **Animaster** | Unverified | Animation Library | Unknown | `PENDING USER INPUT` | No official repository URL or npm package identified. Substitution forbidden. |
 
 ---
 
-## 4. Evaluated External Services / Non-Skill Platforms
+## 2. Token-Efficient Skill Routing Table
 
-| Target | Upstream Source | Classification | Current Status | Disposition / Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| **Onyx** | `github.com/onyx-dot-app/onyx` | Enterprise RAG Platform | **NOT INSTALLED (DEFERRED)** | Full platform requiring Docker/WSL2 and dedicated host services. Documented in `docs/engineering/ONYX_INTEGRATION.md`. |
-| **Animaster** | `animmasterlib.dev` | UI Component Registry | **PENDING USER INPUT** | Copy-paste UI source documented in `docs/engineering/UI_LIBRARY_GUIDE.md`. No monolithic npm package installed. |
-| **Task-Chunking Upstream Repo** | Separate URL from project owner | Upstream Repository | **PENDING USER INPUT** | Runs as a fully verified local workflow in `.agents/skills/task-chunking/SKILL.md` pending owner URL. |
+Routing is deterministic. Match user intent to the primary skill, add at most one complementary skill, and load CodeGraph context:
 
+| Task Intent | Primary Skill | Complementary | Forbidden / Never Do |
+| :--- | :--- | :--- | :--- |
+| **Implement, refactor, or simplify code** | `ponytail` + CodeGraph | Project rules (`.agents/rules/`) | Trade away validation, security, a11y, or tests for brevity |
+| **Create new UI surface (page/flow/component)** | `hallmark` OR `ui-ux-pro-max` (choose one) | `impeccable` (audit afterwards) | Run both generators simultaneously on the same component |
+| **Audit or polish existing UI** | `impeccable` (audit, critique, polish) | `hallmark` (audit only) | Full redesign when only bug fixes or polish were requested |
+| **Redesign maintaining content and IA** | `hallmark` (redesign mode) | `ui-ux-pro-max` for design tokens | Mutate copy, routes, or API data contracts |
+| **Reverse engineer authorized binary/runtime** | `reverse-engineer-anything` | `diagram-design` for architecture | Target unauthorized systems or bypass DRM/licensing |
+| **Polish prose, docs, or UX copy** | `humanizer` | — | Touch code identifiers, API signatures, or error constants |
+| **Recent technology / community research** | `last30days` | — | Treat unverified Reddit/X assertions as verified architectural facts |
+| **Extract data from authorized web source** | `scrapling-official` | — | Bypass access controls or ignore `robots.txt` / terms |
+| **Architecture / sequence / ER diagrams** | `diagram-design` | Mermaid for simple markdown | Embed credentials, tokens, or internal IP addresses |
+| **Large multi-story autonomous delivery** | Ralph Loop (`scripts/ralph/`) | `/plan` first | Start unattended loop without human-reviewed `prd.json` |

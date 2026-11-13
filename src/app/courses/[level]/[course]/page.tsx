@@ -68,12 +68,9 @@ export default async function CourseDetailPage({
           { label: levelData.title, href: `/courses/${c.level}` },
           { label: c.title },
         ]}
-        image={cVis?.image}
-        imageAlt={cVis?.imageAlt}
         icon={cVis?.icon}
         badge={cVis?.badge}
         subtitle={cVis?.subtitle}
-        objectPosition={cVis?.objectPosition}
       />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
         <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1fr_320px]">

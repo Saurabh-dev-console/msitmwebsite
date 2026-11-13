@@ -12,6 +12,7 @@ node_modules/
 
 # Environment files
 .env
+.env.*
 .env*.local
 
 # Debug logs
@@ -20,9 +21,15 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Antigravity Agent & Graph Data (Phase 6 requirement)
-.agent-data/code-graph/
+# Antigravity Agent, Code Graph & Tool Working Data
+.codegraph/
+.gitnexus/
 .agent-data/
+.impeccable/
+.hallmark/
+graphify-out/
+scripts/ralph/archive/
+scripts/ralph/.last-branch
 
 # OS Files
 .DS_Store

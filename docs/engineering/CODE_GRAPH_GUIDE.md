@@ -1,86 +1,87 @@
-# Code Knowledge Graph Guide (GitNexus Architecture)
+# Code Knowledge Graph Guide (CodeGraph Architecture v3.0)
 
-This document outlines the code knowledge graph architecture, query protocols, blast-radius impact analysis, and token-optimization practices used in this workspace.
-
----
-
-## 1. Engine Selection & Technical Evaluation
-
-After evaluating graph solutions for token efficiency, local privacy, Windows compatibility, and Antigravity MCP integration, **GitNexus** was selected as the primary code intelligence engine.
-
-| Criteria | GitNexus Evaluation |
-| :--- | :--- |
-| **Runtime & Platform** | Node.js native (`run.cjs` / CLI), runs cleanly on Windows x64 and Node v22.23.4. |
-| **Database & Privacy** | Embedded LadybugDB zero-server graph database. 100% local, no external telemetry or cloud leakage. |
-| **Language Support** | Full TypeScript, TSX, ECMAScript modules, React 19 JSX, and Next.js App Router AST parsing. |
-| **Current Index Scale** | **551 symbols**, **1,074 relationships**, **13 clusters**, **44 execution flows**. |
-| **Antigravity MCP** | Built-in stdio server (`gitnexus mcp`) and auto-configured skills & AfterTool hooks. |
-| **Token Economy** | Enables 360-degree symbol lookups and caller tracing without loading hundreds of source lines into context. |
+**Specification**: Antigravity Engineering Environment v3.0  
+**Primary Engine**: CodeGraph (`@colbymchenry/codegraph@1.6.2`)  
+**Licence**: MIT / Apache-2.0 (Permissive for commercial use)
 
 ---
 
-## 2. Graph Storage & Isolation
+## 1. Engine Architecture & Licensing Evaluation
 
-- **Runtime Index Storage**: `.gitnexus/` contains the compiled graph database (`lbug`), metadata (`gitnexus.json`), and AST parse caches.
-- **Git Isolation**: `.gitnexus/.gitignore` contains `*` to ensure that generated binary database files are never committed to version control.
-- **Persistent Workspace Metadata**: `.agent-data/code-graph/` preserves workspace-specific graph metadata, maintaining strict separation from application source files in `src/`.
-- **Git Ignore Safeguard**: Root `.gitignore` explicitly excludes `.agent-data/code-graph/` and `.agent-data/`.
+In Antigravity Engineering Environment v3.0, the codebase intelligence engine was upgraded to comply with strict open-source and commercial licensing criteria:
 
----
+| Criteria | CodeGraph (Selected Primary Engine) | GitNexus (License Blocked) |
+| :--- | :--- | :--- |
+| **Licence** | **MIT / Apache-2.0 (Permissive)** | **PolyForm Noncommercial (BLOCKED)** |
+| **Storage & Database** | Local SQLite index in `.codegraph/` | Local LadybugDB in `.gitnexus/` |
+| **Parsing Engine** | Tree-sitter AST parsing with full-text search | Tree-sitter AST parsing |
+| **Current Project Scale** | **284 files, 8,865 nodes, 24,219 edges** | 551 symbols, 1,074 edges |
+| **Antigravity Integration** | Listed among supported MCP agents (`codegraph install`) | Manual stdio MCP |
+| **Context Hygiene** | Zero file injections into `AGENTS.md` | Injects 44 lines into `AGENTS.md` (violates < 60 line rule) |
 
-## 3. Essential Knowledge Graph Commands
-
-All commands can be executed via the project runner: `node .gitnexus/run.cjs <command>` or `npx gitnexus <command>`.
-
-### 3.1 Symbol Context (360° Architectural View)
-Retrieve a symbol's declaration location, line boundaries, incoming callers, outgoing calls, property accesses, and execution flows:
-```bash
-node .gitnexus/run.cjs context <SymbolName>
-```
-*Example:* `node .gitnexus/run.cjs context EnquiryForm`
-
-### 3.2 Impact Analysis (Blast Radius Check)
-Determine what breaks before modifying or deleting a symbol:
-```bash
-node .gitnexus/run.cjs impact <SymbolName> --direction upstream
-```
-*Verification Rule:*
-- If `risk` is `HIGH` or `CRITICAL`, you must review every upstream caller before modifying the symbol signature.
-- If `risk` is `UNKNOWN`, the graph did not resolve static references (common with plain object access or dynamic dispatch). You must perform a text search to confirm safety before making destructive changes.
-
-### 3.3 Semantic Flow Query
-Search execution flows by domain or workflow concept:
-```bash
-node .gitnexus/run.cjs query "<Concept>"
-```
-*Example:* `node .gitnexus/run.cjs query "admission"`
-
-### 3.4 Call Path Tracing
-Discover the exact call sequence connecting two symbols:
-```bash
-node .gitnexus/run.cjs trace <StartSymbol> <EndSymbol>
-```
-
-### 3.5 Pre-Commit Diff Impact Analysis
-Map pending git changes against the symbol graph:
-```bash
-node .gitnexus/run.cjs detect-changes --scope all
-```
-
-### 3.6 Re-indexing
-Update the graph index after adding or renaming files:
-```bash
-node .gitnexus/run.cjs analyze --index-only
-```
+*Decision*: CodeGraph is established as the primary graph engine. GitNexus is maintained strictly as an isolated, unreferenced fallback for non-commercial research.
 
 ---
 
-## 4. Token-Optimization Protocol for AI Agents
+## 2. Before & After Code-Editing Protocol
 
-To minimize context token consumption and maximize accuracy:
+### 2.1 Before Editing (Blast Radius Inspection)
+1. **Search Symbols**: Use `npx @colbymchenry/codegraph query <symbol>` to find definitions and signatures.
+2. **Impact Analysis**: Use `npx @colbymchenry/codegraph impact <symbol>` to see upstream callers and dependents.
+3. **Inspect Callers/Callees**: Run `npx @colbymchenry/codegraph callers <symbol>` and `npx @colbymchenry/codegraph callees <symbol>`.
+4. **Read Actual Source**: The code graph provides a map; always read the actual file range before making changes.
 
-1. **Graph First, File Second**: Never open a file to "see what's in there". Run `node .gitnexus/run.cjs context <Symbol>` first.
-2. **Read Exact Line Ranges**: When editing is required, use `read_file` with `StartLine` and `EndLine` informed by the graph's `startLine` and `endLine`.
-3. **Avoid Speculative Grepping**: Grepping across entire workspaces dumps thousands of irrelevant tokens into context. Use `impact` and `trace` for call chains.
-4. **Targeted Diffs**: Review specific file diffs rather than entire workspace git outputs.
+### 2.2 After Editing (Verification & Freshness)
+1. **Sync Changes**: Run `npx @colbymchenry/codegraph sync` to refresh modified AST nodes.
+2. **Execute Tests**: Run `npm test` and `npm run typecheck` to verify no broken contracts.
+3. **Verify Index Freshness**: Run `npx @colbymchenry/codegraph status`.
 
+---
+
+## 3. Essential CodeGraph Commands
+
+All commands run directly using `npx @colbymchenry/codegraph <command>`:
+
+### 3.1 Symbol Search (`query`)
+```bash
+npx @colbymchenry/codegraph query Header
+npx @colbymchenry/codegraph query Student
+```
+Finds symbol definitions, types, and file locations with line numbers.
+
+### 3.2 Blast Radius & Impact Check (`impact`)
+```bash
+npx @colbymchenry/codegraph impact Header
+npx @colbymchenry/codegraph impact students
+```
+Lists all functions, components, and pages that depend on the target symbol.
+
+### 3.3 Callers & Callees Tracing
+```bash
+npx @colbymchenry/codegraph callers <symbol>
+npx @colbymchenry/codegraph callees <symbol>
+```
+
+### 3.4 Deep Exploration (`explore`)
+```bash
+npx @colbymchenry/codegraph explore "portal authentication flow"
+```
+Returns relevant symbols, source snippets, and execution paths in a single shot.
+
+### 3.5 Index Maintenance (`sync`, `status`, `index`)
+```bash
+# Check current index health
+npx @colbymchenry/codegraph status
+
+# Incrementally sync files modified since last index
+npx @colbymchenry/codegraph sync
+
+# Rebuild complete index from scratch
+npx @colbymchenry/codegraph index
+```
+
+---
+
+## 4. Storage & `.gitignore` Isolation
+
+The SQLite index and AST cache live inside `.codegraph/`. This directory is strictly excluded from version control in `.gitignore`. No database binaries or secrets are ever tracked or committed.

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Icon, type IconName } from "@/components/icons";
 import { PageHero } from "@/components/chrome";
 import { EnquiryForm } from "@/components/forms";
-import { CONTACT, SITE_IMAGES } from "@/data/site";
+import { CONTACT } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -65,8 +65,6 @@ export default function ContactPage() {
         title="Contact MSITM"
         description="We are thrilled you are interested in Meena Shah Institute of Technology and Management — and just as excited to learn about you. Reach out any time, in whatever way works best."
         trail={[{ label: "Home", href: "/" }, { label: "Contact" }]}
-        image={SITE_IMAGES.admissionsCounselling}
-        imageAlt="MSITM admissions and student support reception desk"
         icon="Phone"
         badge="Admissions Desk"
         subtitle="Meena Nagar, Circular Road, Gonda"

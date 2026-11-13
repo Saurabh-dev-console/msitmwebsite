@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Icons } from "@/components/icons";
+import { Icon, Icons } from "@/components/icons";
 import { Blocks, PageHero, SidebarCard, SiblingNav } from "@/components/chrome";
 import { NEWS_INDEX_EXTRA } from "@/data/content";
 import { NEWS_POSTS } from "@/data/news";
@@ -48,11 +47,12 @@ export default async function NewsSubPage({ params }: { params: Promise<{ slug: 
             { label: "News & Events", href: "/college-news-events" },
             { label: "College News" },
           ]}
-          image={SITE_IMAGES.eventsCultural}
-          imageAlt="Students celebrating during an MSITM event"
+          image={SITE_IMAGES.fresherCelebration}
+          imageAlt="Students receiving recognition awards on stage at MSITM"
           icon="Newspaper"
           badge="College Newsroom"
           subtitle="Announcements & Events"
+          objectPosition="top"
         />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
           <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1fr_300px]">
@@ -63,23 +63,18 @@ export default async function NewsSubPage({ params }: { params: Promise<{ slug: 
                   <Link
                     key={n.slug}
                     href={`/${n.slug}`}
-                    className="card-line group grid md:grid-cols-[200px_1fr] gap-0 md:gap-5 overflow-hidden min-w-0"
+                    className="card-line group grid md:grid-cols-[160px_1fr] gap-0 overflow-hidden min-w-0"
                   >
-                    <div className="relative h-48 md:h-full w-full overflow-hidden bg-navy-950">
-                      {vis ? (
-                        <Image
-                          src={vis.image}
-                          alt={vis.imageAlt}
-                          fill
-                          loading="lazy"
-                          sizes="(max-width: 768px) 100vw, 200px"
-                          className={`object-cover ${vis.objectPosition === "top" ? "object-top" : "object-center"} transition-transform duration-500 group-hover:scale-105`}
-                        />
-                      ) : null}
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-navy-950/20 to-transparent" aria-hidden="true" />
-                      <span className="absolute top-2.5 left-2.5 rounded bg-navy-950/90 border border-gold-400/35 px-2 py-0.5 font-display text-xs font-bold text-gold-300">
+                    <div className="bg-navy-900 p-5 flex md:flex-col items-center md:items-start justify-between gap-3 text-white">
+                      <span className="font-display text-2xl font-semibold text-gold-300">
                         {String(i + 1).padStart(2, "0")}
                       </span>
+                      {vis ? (
+                        <div className="flex items-center gap-2 text-xs font-semibold text-navy-100">
+                          <Icon name={vis.icon} className="h-4 w-4 text-gold-400 shrink-0" />
+                          <span>{vis.badge}</span>
+                        </div>
+                      ) : null}
                     </div>
                     <div className="p-5 sm:p-6 min-w-0">
                       <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-700 inline-flex items-center gap-1.5">
